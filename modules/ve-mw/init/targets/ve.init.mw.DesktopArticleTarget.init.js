@@ -19,7 +19,7 @@
  */
 ( function () {
 	var conf, tabMessages, uri, pageExists, viewUri, veEditUri, veEditSourceUri, isViewPage, isEditPage,
-		pageCanLoadEditor, init, targetPromise, enable, tempdisable, autodisable, requiredSkinElements,
+		pageCanLoadEditor, init, targetPromise, enable, tempdisable, autodisable,
 		tabPreference, enabledForUser, initialWikitext, oldid,
 		isLoading,
 		editModes = {
@@ -750,18 +750,6 @@
 		veEditUri.extend( { oldid: oldid } );
 	}
 
-	requiredSkinElements =
-		$( '#content' ).length &&
-		$( '#mw-content-text' ).length &&
-		$( '#ca-edit' ).length;
-
-	if ( pageCanLoadEditor && !requiredSkinElements ) {
-		mw.log.warn(
-			'Your skin is incompatible with VisualEditor. ' +
-			'See <https://www.mediawiki.org/wiki/VisualEditor/Skin_requirements> for the requirements.'
-		);
-	}
-
 	// Whether VisualEditor should be available for the current user, page, wiki, mediawiki skin,
 	// browser etc.
 	init.isAvailable = (
@@ -770,8 +758,8 @@
 
 		( ( 'vewhitelist' in uri.query ) || !$.client.test( init.blacklist, null, true ) ) &&
 
-		// Only in supported skins
-		requiredSkinElements &&
+		// Not on protected pages, or if the user doesn't have permission to edit
+		mw.config.get( 'wgIsProbablyEditable' ) &&
 
 		// Not on pages which are outputs of the Translate extensions
 		// TODO: Allow the Translate extension to do this itself
@@ -850,13 +838,18 @@
 	}
 
 	$( function () {
-		var mode,
+		var mode, requiredSkinElements,
 			showWikitextWelcome = true,
 			section = uri.query.section !== undefined ? parseSection( uri.query.section ) : null,
 			isLoggedIn = !mw.user.isAnon(),
 			prefSaysShowWelcome = isLoggedIn && !mw.user.options.get( 'visualeditor-hidebetawelcome' ),
 			urlSaysHideWelcome = 'hidewelcomedialog' in new mw.Uri( location.href ).query,
 			welcomeDialogLocalStorageValue = null;
+
+		requiredSkinElements =
+			$( '#content' ).length &&
+			$( '#mw-content-text' ).length &&
+			$( '#ca-edit' ).length;
 
 		if ( uri.query.action === 'edit' && $( '#wpTextbox1' ).length ) {
 			initialWikitext = $( '#wpTextbox1' ).textSelection( 'getContents' );
@@ -912,7 +905,12 @@
 			return null;
 		}
 
-		if ( init.isAvailable ) {
+		if ( init.isAvailable && pageCanLoadEditor && !requiredSkinElements ) {
+			mw.log.warn(
+				'Your skin is incompatible with VisualEditor. ' +
+				'See <https://www.mediawiki.org/wiki/VisualEditor/Skin_requirements> for the requirements.'
+			);
+		} else if ( init.isAvailable ) {
 			mode = getInitialEditMode();
 			if ( mode ) {
 				showWikitextWelcome = false;
