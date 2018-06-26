@@ -238,7 +238,9 @@
 
 				// Should be synchronised with ApiVisualEditor.php
 				headers = {
+					// Should be synchronised with ApiVisualEditor.php
 					Accept: 'text/html; charset=utf-8; profile="mediawiki.org/specs/html/1.6.0"',
+					'Accept-Language': mw.config.get( 'wgVisualEditor' ).pageLanguageCode,
 					'Api-User-Agent': 'VisualEditor-MediaWiki/' + mw.config.get( 'wgVersion' )
 				};
 
