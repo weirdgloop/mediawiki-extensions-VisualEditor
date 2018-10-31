@@ -1186,7 +1186,7 @@ class VisualEditorHooks {
 	}
 
 	/**
-	 * @param Array &$redirectParams Parameters preserved on special page redirects
+	 * @param array &$redirectParams Parameters preserved on special page redirects
 	 *   to wiki pages
 	 * @return bool Always true
 	 */
