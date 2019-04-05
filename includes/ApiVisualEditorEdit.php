@@ -266,7 +266,7 @@ class ApiVisualEditorEdit extends ApiVisualEditor {
 			$title,
 			'POST', $path, $data,
 			[ 'If-Match' => $etag ]
-		);
+		)['body'];
 	}
 
 	/**
