@@ -337,6 +337,9 @@ ve.init.mw.ArticleTarget.prototype.loadSuccess = function ( response ) {
 
 	if ( !data || typeof data.content !== 'string' ) {
 		this.loadFail( 've-api', 'No HTML content in response from server' );
+	} else if ( response.veMode && response.veMode !== this.getDefaultMode() ) {
+		this.loadFail( 've-mode', 'Tried to load "' + response.veMode + '" data ' +
+			'into "' + this.getDefaultMode() + '" editor' );
 	} else {
 		this.track( 'trace.parseResponse.enter' );
 		this.originalHtml = data.content;
@@ -1299,6 +1302,7 @@ ve.init.mw.ArticleTarget.prototype.load = function ( dataPromise ) {
 		oldId: this.requestedRevId,
 		targetName: this.constructor.static.trackingName
 	} );
+
 	this.loading
 		.done( this.loadSuccess.bind( this ) )
 		.fail( this.loadFail.bind( this ) );
