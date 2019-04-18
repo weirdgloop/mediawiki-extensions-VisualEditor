@@ -1029,8 +1029,6 @@ ve.init.mw.DesktopArticleTarget.prototype.serializeFail = function ( jqXHR, stat
 
 	OO.ui.alert( ve.msg( 'visualeditor-serializeerror', status ) );
 
-	this.getSurface().getDialogs().closeWindow( 'wikitextswitchconfirm' );
-
 	// It's possible to get here while the save dialog has never been opened (if the user uses
 	// the switch to source mode option)
 	if ( this.saveDialog ) {
@@ -1057,14 +1055,7 @@ ve.init.mw.DesktopArticleTarget.prototype.onToolbarMetaButtonClick = function ()
 ve.init.mw.DesktopArticleTarget.prototype.editSource = function () {
 	var modified = this.fromEditedState || this.getSurface().getModel().hasBeenModified();
 
-	if ( ve.init.target.isModeAvailable( 'source' ) ) {
-		this.switchToWikitextEditor( false, modified );
-	} else if ( !modified ) {
-		this.switchToWikitextEditor( true, modified );
-	} else {
-		ve.ui.actionFactory.create( 'window', this.getSurface() )
-			.open( 'wikitextswitchconfirm', { target: this } );
-	}
+	this.switchToWikitextEditor( modified );
 };
 
 /**
