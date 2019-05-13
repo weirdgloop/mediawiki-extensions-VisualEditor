@@ -37,6 +37,7 @@
 		"VisualEditorRestbaseURL": false,
 		"VisualEditorFullRestbaseURL": false,
 		"VisualEditorSerializationCacheTimeout": 3600,
+		"VisualEditorAllowLossySwitching": true,
 		"VisualEditorAvailableNamespaces": {
 			"User": true,
 			"File": true,
