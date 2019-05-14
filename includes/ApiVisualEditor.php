@@ -283,6 +283,7 @@ class ApiVisualEditor extends ApiBase {
 				RequestContext::getMain()->setTitle( $title );
 
 				$preloaded = false;
+				$restbaseHeaders = null;
 
 				// Get information about current revision
 				if ( $title->exists() ) {
