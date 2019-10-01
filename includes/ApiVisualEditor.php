@@ -9,6 +9,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Logger\LoggerFactory;
 
 class ApiVisualEditor extends ApiBase {
 	/**
@@ -22,12 +23,18 @@ class ApiVisualEditor extends ApiBase {
 	protected $serviceClient;
 
 	/**
+	 * @var \Psr\Log\LoggerInterface
+	 */
+	protected $logger;
+
+	/**
 	 * @inheritDoc
 	 */
 	public function __construct( ApiMain $main, $name, Config $config ) {
 		parent::__construct( $main, $name );
 		$this->veConfig = $config;
 		$this->serviceClient = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
+		$this->logger = LoggerFactory::getInstance( 'VisualEditor' );
 	}
 
 	/**
@@ -123,6 +130,17 @@ class ApiVisualEditor extends ApiBase {
 			);
 		} else {
 			// error null, code not 200
+			$this->logger->warning(
+				__METHOD__ . ": Received HTTP {code} from RESTBase",
+				[
+					'code' => $response['code'],
+					'trace' => ( new Exception )->getTraceAsString(),
+					'response' => $response['body'],
+					'requestPath' => $path,
+					/** @phan-suppress-next-line PhanTypeInvalidDimOffset */
+					'requestIfMatch' => $reqheaders['If-Match'] ?? '',
+				]
+			);
 			$this->dieWithError(
 				[ 'apierror-visualeditor-docserver-http', $response['code'] ],
 				'apierror-visualeditor-docserver-http'
