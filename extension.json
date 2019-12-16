@@ -1184,7 +1184,8 @@
 				"papaparse",
 				"jquery.client",
 				"ext.visualEditor.base",
-				"ext.visualEditor.supportCheck"
+				"ext.visualEditor.supportCheck",
+				"ext.visualEditor.sanitize"
 			],
 			"messages": [
 				"visualeditor",
