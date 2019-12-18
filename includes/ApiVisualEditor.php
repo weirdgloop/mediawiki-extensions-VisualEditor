@@ -651,7 +651,7 @@ class ApiVisualEditor extends ApiBase {
 					'oldid' => $oldid,
 
 				];
-				if ( $restbaseHeaders ) {
+				if ( isset( $restbaseHeaders['etag'] ) ) {
 					$result['etag'] = $restbaseHeaders['etag'];
 				}
 				if ( isset( $params['badetag'] ) ) {
