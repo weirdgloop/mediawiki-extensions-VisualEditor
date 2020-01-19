@@ -338,7 +338,7 @@ class ApiVisualEditor extends ApiBase {
 								$page = WikiPage::factory( $title );
 								$wikitext = $page->replaceSectionAtRev(
 									$section, $sectionContent, '', $oldid
-								)->getText();
+								)->getNativeData();
 							}
 							$response = $this->parseWikitextFragment(
 								$title, $wikitext, false, $oldid, $stash
