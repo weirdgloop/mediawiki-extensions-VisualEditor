@@ -28,7 +28,8 @@
 	},
 	"callback": "VisualEditorHooks::onRegistration",
 	"ServiceWiringFiles": [
-		"includes/ServiceWiring.php"
+		"includes/ServiceWiring.php",
+		"includes/VEParsoid/ServiceWiring.php"
 	],
 	"config": {
 		"VisualEditorAllowExternalLinkPaste": {
@@ -109,9 +110,6 @@
 		},
 		"VisualEditorParsoidAutoConfig": {
 			"value": true
-		},
-		"VisualEditorParsoidSettings": {
-			"value": []
 		},
 		"VisualEditorPluginModules": {
 			"value": []
@@ -2959,7 +2957,8 @@
 		"CollabPad": "SpecialCollabPad"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\VisualEditor\\": "includes/"
+		"MediaWiki\\Extension\\VisualEditor\\": "includes/",
+		"VEParsoid\\": "includes/VEParsoid/src"
 	},
 	"AutoloadClasses": {
 		"ApiParsoidTrait": "includes/ApiParsoidTrait.php",
