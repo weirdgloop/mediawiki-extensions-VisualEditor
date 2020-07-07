@@ -2817,6 +2817,9 @@
 	"SpecialPages": {
 		"CollabPad": "SpecialCollabPad"
 	},
+	"AutoloadNamespaces": {
+		"VEParsoid\\": "includes/VEParsoid/src"
+	},
 	"AutoloadClasses": {
 		"ApiParsoidTrait": "includes/ApiParsoidTrait.php",
 		"ApiVisualEditor": "includes/ApiVisualEditor.php",
@@ -2826,6 +2829,9 @@
 		"VisualEditorDesktopArticleTargetInitModule": "includes/VisualEditorDesktopArticleTargetInitModule.php",
 		"VisualEditorHooks": "includes/VisualEditorHooks.php"
 	},
+	"ServiceWiringFiles": [
+		"includes/VEParsoid/ServiceWiring.php"
+	],
 	"ConfigRegistry": {
 		"visualeditor": "GlobalVarConfig::newInstance"
 	},
