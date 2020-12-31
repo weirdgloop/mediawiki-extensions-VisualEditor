@@ -18,3 +18,4 @@ screenshots/*.png
 
 # OS
 .DS_Store
+/.eslintcache
