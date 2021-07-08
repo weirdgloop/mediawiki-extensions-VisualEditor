@@ -167,9 +167,11 @@ ve.ui.MWTemplateTitleInputWidget.prototype.getLookupRequest = function () {
 				limit: 1,
 				formatversion: 2
 			} ).then( function ( openSearchResult ) {
-				// OpenSearch will perform a prefix search, but we only care about exact matches
+				// OpenSearch will perform a prefix search and might return results we already know
 				var titles = openSearchResult[ 1 ].filter( function ( searchResult ) {
-					return searchResult.toLowerCase() === lowerTitle;
+					return !response.query.pages.some( function ( page ) {
+						return page.title === searchResult;
+					} );
 				} );
 				for ( i = titles.length; i--; ) {
 					unshiftPages( response, {
