@@ -507,7 +507,7 @@ class VisualEditorHooks {
 			$dbr = wfGetDB( DB_REPLICA );
 			$revWhere = ActorMigration::newMigration()->getWhere( $dbr, 'rev_user', $user );
 			foreach ( $revWhere['orconds'] as $key => $cond ) {
-				$tsField = $key === 'actor' ? 'revactor_timestamp' : 'rev_timestamp';
+				$tsField = 'rev_timestamp';
 				if (
 					$dbr->select(
 						[ 'revision' ] + $revWhere['tables'],
