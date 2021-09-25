@@ -933,7 +933,6 @@ class VisualEditorHooks {
 				$veConfig->get( 'VisualEditorEnableWikitext' ) ||
 				$veConfig->get( 'VisualEditorEnableWikitextBetaFeature' )
 			),
-			'svgMaxSize' => $coreConfig->get( 'SVGMaxSize' ),
 			'namespacesWithSubpages' => $coreConfig->get( 'NamespacesWithSubpages' ),
 			'specialBooksources' => urldecode( SpecialPage::getTitleFor( 'Booksources' )->getPrefixedURL() ),
 			'rebaserUrl' => $coreConfig->get( 'VisualEditorRebaserURL' ),
