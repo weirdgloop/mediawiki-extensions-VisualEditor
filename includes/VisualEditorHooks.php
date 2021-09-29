@@ -1032,6 +1032,16 @@ class VisualEditorHooks {
 			)
 		);
 
+		$namespacesWithSubpages = $coreConfig->get( 'NamespacesWithSubpages' );
+		// $namespacesWithSubpages is a map of namespace id to boolean value, we want
+		// to filter out namespaces that don't exist, not need to include those and it
+		// would increase the JavaScript config size. See T291727
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$namespacesWithSubpages = array_filter(
+			$namespacesWithSubpages,
+			[ $nsInfo, 'exists' ],
+			ARRAY_FILTER_USE_KEY
+		);
 		$vars['wgVisualEditorConfig'] = [
 			'usePageImages' => $extensionRegistry->isLoaded( 'PageImages' ),
 			'usePageDescriptions' => $extensionRegistry->isLoaded( 'WikibaseClient' ),
@@ -1061,7 +1071,7 @@ class VisualEditorHooks {
 				$veConfig->get( 'VisualEditorEnableWikitextBetaFeature' )
 			),
 			'useChangeTagging' => $veConfig->get( 'VisualEditorUseChangeTagging' ),
-			'namespacesWithSubpages' => $coreConfig->get( 'NamespacesWithSubpages' ),
+			'namespacesWithSubpages' => $namespacesWithSubpages,
 			'specialBooksources' => urldecode( SpecialPage::getTitleFor( 'Booksources' )->getPrefixedURL() ),
 			'rebaserUrl' => $coreConfig->get( 'VisualEditorRebaserURL' ),
 			'restbaseUrl' => $coreConfig->get( 'VisualEditorRestbaseURL' ),
