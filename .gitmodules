@@ -1,3 +1,4 @@
 [submodule "lib/ve"]
 	path = lib/ve
-	url = https://gerrit.wikimedia.org/r/VisualEditor/VisualEditor.git
+	url = https://gitlab.com/weirdgloop/extensions/VisualEditor-lib.git
+	branch = weirdgloop/REL1_31
