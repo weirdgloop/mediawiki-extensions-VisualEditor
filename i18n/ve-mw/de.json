@@ -17,7 +17,10 @@
 			"Se4598",
 			"ToBeFree",
 			"Tomabrafix",
-			"Umherirrender"
+			"Umherirrender",
+			"Johanna Strodt (WMDE)",
+			"R",
+			"TMg"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -37,7 +40,7 @@
 	"visualeditor-autosave-recovered-text": "Deine ungespeicherten Änderungen wurden automatisch wiederhergestellt.",
 	"visualeditor-autosave-recovered-title": "Änderungen wiederhergestellt",
 	"visualeditor-backbutton-tooltip": "Zurück gehen",
-	"visualeditor-beta-warning": "Falls du irgendwelche technischen Fehler entdeckst, melde diese bitte",
+	"visualeditor-beta-warning": "Falls du technische Fehler entdeckst, melde diese bitte",
 	"visualeditor-browserwarning": "Du verwendest einen Browser, der von diesem Editor nicht offiziell unterstützt wird.",
 	"visualeditor-ca-createlocaldescriptionsource": "Lokalen Beschreibungsquelltext hinzufügen",
 	"visualeditor-ca-createsource": "Quelltext erstellen",
@@ -122,7 +125,7 @@
 	"visualeditor-dialog-meta-languages-label": "Sprachen",
 	"visualeditor-dialog-meta-languages-link-label": "Verlinkte Seite",
 	"visualeditor-dialog-meta-languages-name-label": "Sprache",
-	"visualeditor-dialog-meta-languages-readonlynote": "Dies ist eine Liste der Seiten in anderen Sprachen, die auf diese Seite verlinkt sind. Sie können derzeit nur im Quelltextmodus oder auf Wikidata bearbeitet werden.",
+	"visualeditor-dialog-meta-languages-readonlynote": "Dies ist eine Liste von Seiten in anderen Sprachen, die auf dieser Seite verlinkt sind. Sie kann derzeit nur im Quelltextmodus oder auf Wikidata bearbeitet werden.",
 	"visualeditor-dialog-meta-languages-section": "Sprachen",
 	"visualeditor-dialog-meta-settings-displaytitle": "Anzeigetitel",
 	"visualeditor-dialog-meta-settings-displaytitle-enable": "Anzeigetitel aktivieren",
@@ -388,7 +391,7 @@
 	"visualeditor-section-title-placeholder": "Betreff",
 	"visualeditor-serializeerror": "Fehler beim Laden der Daten vom Server: $1.",
 	"visualeditor-loaderror-revidconflict": "Die vom Server zurückgegebenen Versions-IDs stimmen nicht überein (Dokument: $1, Metadaten: $2).",
-	"visualeditor-loaderror-wrongmode": "Es wurde versucht, den Editor im falschen Modus zu laden (Datentyp: \"$1\", Editor-Modus: \"$2\").",
+	"visualeditor-loaderror-wrongmode": "Es wurde versucht, den Editor im falschen Modus zu laden (Datentyp: „$1“, Editor-Modus: „$2“).",
 	"visualeditor-settings-tool": "Seiteneinstellungen",
 	"visualeditor-special-characters-group-other": "Oft verwendet",
 	"visualeditor-templatesused-tool": "Verwendete Vorlagen",

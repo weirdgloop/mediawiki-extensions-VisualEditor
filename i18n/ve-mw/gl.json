@@ -13,7 +13,8 @@
 			"Maria zaos",
 			"McDutchie",
 			"Toliño",
-			"Vivaelcelta"
+			"Vivaelcelta",
+			"TMg"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -195,7 +196,7 @@
 	"visualeditor-dialog-transclusion-required-parameter-is-blank": "Está seguro de querer continuar sen encher {{PLURAL:$2|o campo|os campos}} $1?",
 	"visualeditor-dialog-transclusion-single-mode": "Agochar as opcións",
 	"visualeditor-dialog-transclusion-title": "Transclusión",
-	"visualeditor-dialogbutton-media-tooltip": "Ficheiros multimedia",
+	"visualeditor-dialogbutton-media-tooltip": "Imaxes e ficheiros multimedia",
 	"visualeditor-dialogbutton-meta-tooltip": "Configuración da páxina",
 	"visualeditor-dialogbutton-template-tooltip": "Modelo",
 	"visualeditor-dialogbutton-transclusion-tooltip": "Transclusión",
@@ -220,7 +221,7 @@
 	"visualeditor-generating-wikitext-progress": "Xerando texto wiki",
 	"visualeditor-languages-tool": "Linguas",
 	"visualeditor-linkinspector-button-link-external": "Sitio externo",
-	"visualeditor-linkinspector-button-link-internal": "Procurar páxinas",
+	"visualeditor-linkinspector-button-link-internal": "Procurar páxinas internas",
 	"visualeditor-linkinspector-convert-link-isbn": "Converter a ligazón de ISBN",
 	"visualeditor-linkinspector-convert-link-pmid": "Converter a ligazón de PMID",
 	"visualeditor-linkinspector-convert-link-rfc": "Converter a ligazón de RFC",

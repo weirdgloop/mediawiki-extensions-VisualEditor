@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Joetaras"
+			"Joetaras",
+			"TMg"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -180,6 +181,7 @@
 	"visualeditor-dialog-transclusion-required-parameter-is-blank": "Sì secure de vulè ccu condinue senze valorizzà {{PLURAL:$2|'u|le}} cambe $1?",
 	"visualeditor-dialog-transclusion-single-mode": "Scunne le opziune",
 	"visualeditor-dialog-transclusion-title": "Esclusione",
+	"visualeditor-dialog-transclusion-templates-menu-aria-label": "Menù de configurazione de le cambe d'u template",
 	"visualeditor-dialogbutton-media-tooltip": "Immaggine e media",
 	"visualeditor-dialogbutton-meta-tooltip": "'Mbostaziune d'a pàgene",
 	"visualeditor-dialogbutton-template-tooltip": "Template",
@@ -203,6 +205,14 @@
 	"visualeditor-formatdropdown-format-mw-heading5": "Sotte-testate 3",
 	"visualeditor-formatdropdown-format-mw-heading6": "Sotte-testate 4",
 	"visualeditor-generating-wikitext-progress": "Stoche a genere uicchiteste",
+	"visualeditor-includes-noinclude-start": "Inizie d'u condenute escluse da l'estratte",
+	"visualeditor-includes-noinclude-end": "Fine d'u condenute escluse da l'estratte",
+	"visualeditor-includes-onlyinclude-start": "Inizie d'u condenute permesse jndr'à l'estratte",
+	"visualeditor-includes-onlyinclude-end": "Fine d'u condenute permesse jndr'à l'estratte",
+	"visualeditor-includes-includeonly": "Condenute sulamende pe l'estratte",
+	"visualeditor-includes-noinclude-description": "Quanne 'u condenute da sta pàgene avène ausate da 'n'otra pàgene, 'u condenute da aqquà fine a 'u combronde cu 'u marcatore de fine <strong>non</strong> g'avène ingluse. Fà attenziò quanne cange 'u condenute fore da ste marcature, cumme a otre pàggene 'u ponne ausà.",
+	"visualeditor-includes-onlyinclude-description": "Quanne 'u condenute da sta pàgene avène ausate da 'n'otra pàgene,<strong>sulamende</strong> 'u condenute da aqquà fine a 'u combronde cu 'u marcatore de fine avène ingluse. Fà attenziò quanne cange 'u condenute 'mbrà ste marcature, cumme a otre pàggene 'u ponne ausà.",
+	"visualeditor-includes-includeonly-description": "Quanne 'u condenute da sta pàgene avène ausate da 'n'otra pàgene, stu condenute aggiundive avène 'ngluse aqquà:",
 	"visualeditor-languages-tool": "Lènghe",
 	"visualeditor-linkinspector-button-link-external": "Site de fore",
 	"visualeditor-linkinspector-button-link-internal": "Cirche le pàggene 'nderne",

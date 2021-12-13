@@ -39,7 +39,10 @@
 			"Stefania.scaramuzzi",
 			"Supernino",
 			"Una giornata uggiosa '94",
-			"Wikitoni"
+			"Wikitoni",
+			"Ajeje Brazorf",
+			"Lorem Ipsum",
+			"Toa"
 		]
 	},
 	"collabpad-import-subtitle": "Importato da $1",
@@ -86,7 +89,7 @@
 	"visualeditor-dialog-media-info-licenseshortname": "Licenza",
 	"visualeditor-dialog-media-info-meta-artist": "Artista: $1",
 	"visualeditor-dialog-media-info-moreinfo": "Ulteriori informazioni",
-	"visualeditor-dialog-media-info-readmore": "Leggi di più",
+	"visualeditor-dialog-media-info-readmore": "Per saperne di più",
 	"visualeditor-dialog-media-info-uploaded": "Caricato: $1",
 	"visualeditor-dialog-media-page-advanced": "Avanzate",
 	"visualeditor-dialog-media-page-general": "Generale",
@@ -345,6 +348,7 @@
 	"visualeditor-savedialog-label-review": "Rivedi le modifiche",
 	"visualeditor-savedialog-label-review-good": "Ritorna al modulo di salvataggio",
 	"visualeditor-savedialog-label-save-short": "Salva",
+	"visualeditor-savedialog-label-save-short-start": "Salva...",
 	"visualeditor-savedialog-label-visual-diff-report": "Segnala una visualizzazione errata per questa modifica",
 	"visualeditor-savedialog-label-warning": "Attenzione",
 	"visualeditor-savedialog-review-nosummary": "Nessun oggetto della modifica",
