@@ -24,7 +24,8 @@
 			"William Surya Permana",
 			"Chinamoonroll",
 			"TMg",
-			"WillsonEP09"
+			"WillsonEP09",
+			"Daud I.F. Argana"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -405,6 +406,7 @@
 	"visualeditor-templatesused-tool": "Templat yang digunakan",
 	"visualeditor-title-error": "Judul tidak sah.",
 	"visualeditor-toload": "Penyunting akan segera dimuat. Bila Anda masih melihat pesan ini setelah beberapa detik, silakan [$1 muat ulang halaman ini].",
+	"visualeditor-tooltip-non-breaking-space": "Spasi penggabung",
 	"visualeditor-usernamespacepagelink": "Project:Ruang nama pengguna",
 	"visualeditor-version-label": "Versi",
 	"visualeditor-wikitext-progress": "Mengkonversi teks wiki",
