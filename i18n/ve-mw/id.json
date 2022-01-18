@@ -25,7 +25,8 @@
 			"Chinamoonroll",
 			"TMg",
 			"WillsonEP09",
-			"Daud I.F. Argana"
+			"Daud I.F. Argana",
+			"EkoITS94"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -177,7 +178,7 @@
 	"visualeditor-dialog-table-sortable": "Dapat diurutkan",
 	"visualeditor-dialog-table-wikitable": "Bergaya (tabel wiki)",
 	"visualeditor-dialog-template-title": "Templat",
-	"visualeditor-dialog-transclusion-absent-template": "Templat \"$1\" mash belum tersedia.",
+	"visualeditor-dialog-transclusion-absent-template": "Templat \"$1\" masih belum tersedia.",
 	"visualeditor-dialog-transclusion-add-content": "Tambah konten",
 	"visualeditor-dialog-transclusion-add-param": "Tambah informasi lainnya",
 	"visualeditor-dialog-transclusion-add-template": "Tambah templat",
