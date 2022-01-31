@@ -18,7 +18,9 @@
 			"Nguyễn Mạnh An",
 			"P.T.Đ",
 			"Thienhau2003",
-			"Vinhtantran"
+			"Vinhtantran",
+			"Keo010122",
+			"NguoiDungKhongDinhDanh"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -188,7 +190,7 @@
 	"visualeditor-dialog-transclusion-param-info": "Miêu tả trường",
 	"visualeditor-dialog-transclusion-param-info-missing": "Không có lời miêu tả trường",
 	"visualeditor-dialog-transclusion-placeholder": "Thêm bản mẫu",
-	"visualeditor-dialog-transclusion-raw-fallback": "Lỡ thì hiển thị mã wiki thuần",
+	"visualeditor-dialog-transclusion-raw-fallback": "Hiển thị mã wiki thuần",
 	"visualeditor-dialog-transclusion-remove-content": "Xóa nội dung",
 	"visualeditor-dialog-transclusion-remove-param": "Xóa trường",
 	"visualeditor-dialog-transclusion-remove-template": "Gỡ bản mẫu",
