@@ -5,7 +5,8 @@
 			"Sol lemon",
 			"פוילישער",
 			"十弌",
-			"TMg"
+			"TMg",
+			"Castillerian"
 		]
 	},
 	"collabpad-import-subtitle": "אימפארטירט פֿון $1",
@@ -15,7 +16,7 @@
 	"tooltip-ca-ve-edit": "רעדאקטירן דעם בלאַט",
 	"visualeditor-advancedsettings-tool": "פארגעשריטענע אײַנשטעלונגען",
 	"visualeditor-autosave-modified-prompt-accept": "פארזעצן רעדאקטירן",
-	"visualeditor-autosave-modified-prompt-reject": "אנהייבן א נײַע רעדאקטירונג",
+	"visualeditor-autosave-modified-prompt-reject": "אָנהייבן אַ נײַע רעדאַקטירונג",
 	"visualeditor-autosave-recovered-title": "ענדערונגען צוריקגעשטעלט",
 	"visualeditor-backbutton-tooltip": "צוריקגיין",
 	"visualeditor-beta-warning": "טאמער איר טרעפט עפעס א טעכנישע פראגע ביים רעדאקטירן, ביטע באריכטעט.",
@@ -179,7 +180,7 @@
 	"visualeditor-formatdropdown-format-mw-heading6": "אונטערקעפל 4",
 	"visualeditor-generating-wikitext-progress": "גענערירן וויקיטעקסט",
 	"visualeditor-languages-tool": "שפּראַכן",
-	"visualeditor-linkinspector-button-link-external": "דרויסנדיקער וועבזייטל",
+	"visualeditor-linkinspector-button-link-external": "דרויסנדיקע וועבזײטל",
 	"visualeditor-linkinspector-button-link-internal": "זוכן אינערע בלעטער",
 	"visualeditor-linkinspector-convert-link-isbn": "קאנווערטירן צו ISBN לינק",
 	"visualeditor-linkinspector-convert-link-pmid": "קאנווערטירן צו PMID לינק",
