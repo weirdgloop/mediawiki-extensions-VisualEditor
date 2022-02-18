@@ -687,7 +687,7 @@ ve.init.mw.DesktopArticleTarget.prototype.loadFail = function ( code, errorDetai
 	}
 
 	if ( !this.activating ) {
-		// Load failed after activation abandoned (e.g. user pressed escaped).
+		// Load failed after activation abandoned (e.g. user pressed escape).
 		// Nothing more to do.
 		return;
 	}
@@ -861,7 +861,7 @@ ve.init.mw.DesktopArticleTarget.prototype.onDocumentKeyDown = function ( e ) {
 				if ( toolbarDialogs && toolbarDialogs.getCurrentWindow() ) {
 					toolbarDialogs.getCurrentWindow().close();
 				} else {
-					target.tryTeardown( true, 'navigate-read' );
+					target.tryTeardown( false, 'navigate-read' );
 				}
 			}
 		} );
