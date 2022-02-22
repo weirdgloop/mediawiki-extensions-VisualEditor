@@ -8,7 +8,11 @@
 			"Remam222",
 			"SAgbley",
 			"Naa2Darkoa",
-			"Robertjamal12"
+			"Robertjamal12",
+			"Daniella Damptey",
+			"Lynessa",
+			"Mbaidoo",
+			"Warmglow"
 		]
 	},
 	"tooltip-ca-edit": "Fa wikitext sesa saa krataa fa yi",
@@ -29,6 +33,7 @@
 	"visualeditor-ca-ve-create": "VisualEditor",
 	"visualeditor-categories-tool": "Nkyekyemu",
 	"visualeditor-desc": "Visual editor a ewɔ hɔ ma MediaWiki",
+	"visualeditor-descriptionpagelink": "Dwumadi:VisulaEditor",
 	"visualeditor-dialog-media-alttext-section": "Atwerɛdeɛ fofrɔ",
 	"visualeditor-dialog-media-change-image": "Sesa ahoni",
 	"visualeditor-dialog-media-choose-image": "Fa saa nfonin",
