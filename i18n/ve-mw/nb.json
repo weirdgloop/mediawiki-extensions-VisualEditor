@@ -15,7 +15,9 @@
 			"Nghtwlkr",
 			"Njardarlogar",
 			"Orf3us",
-			"Tarjeimo"
+			"Tarjeimo",
+			"Abuluntu",
+			"TMg"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -392,6 +394,7 @@
 	"visualeditor-templatesused-tool": "Maler brukt",
 	"visualeditor-title-error": "Ugyldig tittel.",
 	"visualeditor-toload": "Editoren lastes nå inn. Hvis du fremdeles ser denne meldingen etter et par sekunder, prøv å [$1 laste siden på nytt].",
+	"visualeditor-tooltip-non-breaking-space": "Hardt mellomrom",
 	"visualeditor-usernamespacepagelink": "Project:Brukersider",
 	"visualeditor-version-label": "Versjon",
 	"visualeditor-wikitext-progress": "Konverterer wikitekst",
