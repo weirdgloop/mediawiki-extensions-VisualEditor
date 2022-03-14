@@ -30,7 +30,8 @@
 			"Darafsh",
 			"Jeeputer",
 			"Mohammad ebz",
-			"TMg"
+			"TMg",
+			"Beginneruser"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -227,7 +228,7 @@
 	"visualeditor-editsummary": "آن‌چه را تغییر دادید، توصیف کنید",
 	"visualeditor-editsummary-bytes-remaining": "تعداد بایت‌های باقی مانده",
 	"visualeditor-editsummary-characters-remaining": "تعداد نویسه‌های باقی‌مانده",
-	"visualeditor-educationpopup-dismiss": "باشد، گرفتم",
+	"visualeditor-educationpopup-dismiss": "باشه، فهمیدم",
 	"visualeditor-feedback-defaultmessage": "URL: $1",
 	"visualeditor-formatdropdown-format-mw-heading1": "عنوان صفحه",
 	"visualeditor-formatdropdown-format-mw-heading2": "عنوان بخش",
