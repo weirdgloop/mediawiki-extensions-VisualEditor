@@ -27,7 +27,8 @@
 			"فلورانس",
 			"محمد أحمد عبد الفتاح",
 			"محمد عصام",
-			"مشعل الحربي"
+			"مشعل الحربي",
+			"SaldırganSincap"
 		]
 	},
 	"collabpad-doctitle": "كولاب باد: $1",
@@ -237,7 +238,7 @@
 	"visualeditor-linkinspector-convert-link-isbn": "تحويل إلى الرابط ISBN",
 	"visualeditor-linkinspector-convert-link-pmid": "حول إلى وصلة PMID",
 	"visualeditor-linkinspector-convert-link-rfc": "تحويل إلى الرابط RFC",
-	"visualeditor-linkinspector-educationpopup-text": "اربط الكلمات المهمة بمقالات اخرى في ويكيبيديا أو حتى بموقع آخر، لتمكين القارئ من فهم مرادها.",
+	"visualeditor-linkinspector-educationpopup-text": "اربط الكلمات المهمة بمقالاتٍ أخرى في ويكيبيديا أو حتى بموقع آخر، لتمكين القارئ من فهم مرادها.",
 	"visualeditor-linkinspector-educationpopup-title": "وصلات",
 	"visualeditor-linkinspector-illegal-title": "عنوان الصفحة غير صحيح",
 	"visualeditor-linkinspector-invalid-external": "أدخل المسار كاملا، على سبيل المثال https://example.org",
