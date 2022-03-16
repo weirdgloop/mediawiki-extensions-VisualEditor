@@ -30,7 +30,8 @@
 			"الناز",
 			"درفش کاویانی",
 			"فلورانس",
-			"TMg"
+			"TMg",
+			"Beginneruser"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -252,7 +253,7 @@
 	"visualeditor-editnotices-tooltip": "اعلامیه‌های ویرایش",
 	"visualeditor-editsummary": "آن‌چه را تغییر دادید، توصیف کنید",
 	"visualeditor-editsummary-characters-remaining": "تعداد نویسه‌های باقی‌مانده",
-	"visualeditor-educationpopup-dismiss": "باشد، گرفتم",
+	"visualeditor-educationpopup-dismiss": "باشه، فهمیدم",
 	"visualeditor-expandable-less": "کمتر",
 	"visualeditor-expandable-more": "بیشتر",
 	"visualeditor-feedback-defaultmessage": "URL: $1",
@@ -398,7 +399,7 @@
 	"visualeditor-preference-visualdiffpage-description": "فعال‌کردن حالت نمایشی جدید بر روی نسخه تفاوت صفحه.",
 	"visualeditor-preference-visualdiffpage-discussion-link": "//www.mediawiki.org/wiki/Talk:VisualEditor/Diffs",
 	"visualeditor-preference-visualdiffpage-label": "تفاوت دیداری",
-	"visualeditor-rebase-client-export": "برون‌ریزی",
+	"visualeditor-rebase-client-export": "برون‌بری",
 	"visualeditor-rebase-client-export-start": "برون‌بری...",
 	"visualeditor-rebase-client-import": "درون‌ریزی",
 	"visualeditor-rebase-client-import-name": "عنوان صفحه",
