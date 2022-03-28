@@ -40,6 +40,9 @@ ve.ui.sequenceRegistry.register(
 	new ve.ui.Sequence( 'wikitextComment', 'comment', '<!--', 4 )
 );
 
+// T304804
+ve.ui.sequenceRegistry.unregister( 'backtick' );
+
 /* Help registrations */
 
 ve.ui.commandHelpRegistry.register( 'formatting', 'heading2', {
