@@ -37,7 +37,9 @@
 			"Yusuke1109",
 			"ネイ",
 			"RYOUMA1117",
-			"しぃ"
+			"しぃ",
+			"A2y4",
+			"Yamagata Yusuke"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -396,6 +398,6 @@
 	"visualeditor-wikitext-warning": "ビジュアルエディターを使用中です。[[{{MediaWiki:visualeditor-wikitext-warning-link}}|ウィキテキスト]]はここでは使用できません。スイッチボタンをクリックすることで、編集内容を保持したままいつでもソース編集に切り替えられます。",
 	"visualeditor-wikitext-warning-title": "ウィキテキスト記法を検出しました",
 	"visualeditor-wikitextconvert-title": "書式をウィキテキストに変換しますか?",
-	"visualeditor-wikitextconvert-message": "あなたが貼り付けようとしている内容には書式が含まれています。ウィキテキストに変換しますか、それともプレーンテキストを貼り付けますか？",
+	"visualeditor-wikitextconvert-message": "あなたは豊富な書式が含まれている内容を貼り付けました。ウィキテキストに変換したいと思っていますか。",
 	"visualeditor-wikitextconvert-convert": "ウィキテキストに変換する"
 }
