@@ -187,6 +187,7 @@
 	"visualeditor-dialog-transclusion-param-example-long": "Piemērs: $1",
 	"visualeditor-dialog-transclusion-param-info": "Lauka apraksts",
 	"visualeditor-dialog-transclusion-param-info-missing": "Lauka apraksts nav pieejams",
+	"visualeditor-dialog-transclusion-param-selection-aria-label": "Parametri veidnē \"$1\"",
 	"visualeditor-dialog-transclusion-param-undocumented": "(Nedokumentēts parametrs)",
 	"visualeditor-dialog-transclusion-placeholder": "Pievienot veidni",
 	"visualeditor-dialog-transclusion-placeholder-input-placeholder": "Atrast veidni",
