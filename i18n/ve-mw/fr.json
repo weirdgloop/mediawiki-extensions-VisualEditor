@@ -214,7 +214,7 @@
 	"visualeditor-dialog-transclusion-action-save": "Enregistrer",
 	"visualeditor-dialog-transclusion-absent-template": "Le modèle « $1 » n’existe pas encore.",
 	"visualeditor-dialog-transclusion-add-content": "Ajouter le contenu",
-	"visualeditor-dialog-transclusion-add-wikitext": "Ajouter le wikitexte",
+	"visualeditor-dialog-transclusion-add-wikitext": "Ajouter le wikicode",
 	"visualeditor-dialog-transclusion-add-param": "Ajouter plus d’informations",
 	"visualeditor-dialog-transclusion-add-param-error-alias": "« $1 » est déjà ajouté comme « $2 ». Veuillez vérifier les options dans la barre latérale. Cela est dû soit à l’utilisation d’[//www.mediawiki.org/wiki/Help:TemplateData#aliases alias] ou de [//www.mediawiki.org/wiki/Help:TemplateData#label libellés].",
 	"visualeditor-dialog-transclusion-add-param-error-deprecated": "\"$1\" ne peut pas être ajouté car le paramètre a été marqué comme [//www.mediawiki.org/wiki/Help:TemplateData#deprecated obsolète].",
