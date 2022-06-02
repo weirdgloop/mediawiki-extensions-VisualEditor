@@ -33,7 +33,8 @@
 			"Woytecr",
 			"Yejianfei",
 			"Zoranzoki21",
-			"Ата"
+			"Ата",
+			"Pols12"
 		]
 	},
 	"accesskey-ca-editsource": "{{doc-accesskey}}",
@@ -226,7 +227,7 @@
 	"visualeditor-dialog-transclusion-filter-placeholder": "Placeholder text for the search field that filters the list of template parameters. In this context the term \"field\" refers to a template parameter. Depending on the language the better translation might be \"parameter\".",
 	"visualeditor-dialog-transclusion-filter-show-all": "One of two alternating labels for a button in the template dialog's parameter selection that shows all parameters when unused parameters have been filtered before. In this context the term \"fields\" refers to template parameters. Depending on the language the better translation might be \"parameters\". The term \"fields\" refers to the template parameters.",
 	"visualeditor-dialog-transclusion-filter-title": "Title for the template parameter search field.\n\nParameters:\n* $1 - The title of the related template.",
-	"visualeditor-dialog-transclusion-help-title": "Title for the template help dialog.",
+	"visualeditor-dialog-transclusion-help-title": "Title for the template help dialog.\n\nText longer than 33 characters will overflow.",
 	"visualeditor-dialog-transclusion-help-message": "'''In RTL languages, swap \"left\" and \"right\".'''\n\nMessage shown to an editor within the template help dialog.",
 	"visualeditor-dialog-transclusion-help-page-feedback": "Link to the feedback page for template improvements.",
 	"visualeditor-dialog-transclusion-help-page-help": "Link to the template section on the project's help page.",
