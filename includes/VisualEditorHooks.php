@@ -1097,7 +1097,7 @@ class VisualEditorHooks {
 			'galleryOptions' => $coreConfig->get( 'GalleryOptions' ),
 			'unsupportedList' => $veConfig->get( 'VisualEditorBrowserUnsupportedList' ),
 			'tabPosition' => $veConfig->get( 'VisualEditorTabPosition' ),
-			'tabMessages' => $veConfig->get( 'VisualEditorTabMessages' ),
+			'tabMessages' => array_filter( $veConfig->get( 'VisualEditorTabMessages' ) ),
 			'singleEditTab' => $veConfig->get( 'VisualEditorUseSingleEditTab' ),
 			'enableVisualSectionEditing' => $veConfig->get( 'VisualEditorEnableVisualSectionEditing' ),
 			'showBetaWelcome' => $veConfig->get( 'VisualEditorShowBetaWelcome' ),
