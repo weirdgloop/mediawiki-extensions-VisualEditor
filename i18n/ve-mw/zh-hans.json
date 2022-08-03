@@ -48,7 +48,8 @@
 			"飞舞回堂前",
 			"Bo77le",
 			"Diskdance",
-			"Tr jason"
+			"Tr jason",
+			"Stang"
 		]
 	},
 	"collabpad-doctitle": "协作板：$1",
@@ -223,7 +224,7 @@
 	"visualeditor-dialog-transclusion-confirmation-reject": "继续编辑",
 	"visualeditor-dialog-transclusion-content": "内容",
 	"visualeditor-dialog-transclusion-contextitem-description": "生成自：$1",
-	"visualeditor-dialog-transclusion-contextitem-loading": "正在载入……",
+	"visualeditor-dialog-transclusion-contextitem-loading": "正在加载……",
 	"visualeditor-dialog-transclusion-expand-options": "显示选项",
 	"visualeditor-dialog-transclusion-filter-hide-unused": "隐藏未使用的字段",
 	"visualeditor-dialog-transclusion-filter-no-match": "未找到匹配项",
@@ -232,7 +233,7 @@
 	"visualeditor-dialog-transclusion-help-title": "模板编辑支持",
 	"visualeditor-dialog-transclusion-deprecated-parameter": "弃用字段",
 	"visualeditor-dialog-transclusion-deprecated-parameter-description": "字段已弃用。$1",
-	"visualeditor-dialog-transclusion-loading": "正在载入...",
+	"visualeditor-dialog-transclusion-loading": "正在加载...",
 	"visualeditor-dialog-transclusion-more-template-description": "在[[$2|该页面]]可能包含一些有关“$1”模板的额外信息。",
 	"visualeditor-dialog-transclusion-multipart-message": "您当前正在编辑一个模板，以及一个或多个[//www.mediawiki.org/wiki/Special:MyLanguage/Help:VisualEditor/User_guide#Editing_multi-part_template_content 与之关联的内容]（wikitext和/或其他模板）。",
 	"visualeditor-dialog-transclusion-no-parameters-description": "此模板可能设计为在没有[//www.mediawiki.org/wiki/Special:MyLanguage/Help:Templates#Parameters 参数]的情况下使用。如果此模板确实包含参数，则它们是[//www.mediawiki.org/wiki/Special:MyLanguage/Help:VisualEditor/User_guide#Adding_undocumented_parameters 未记录的参数]。",
