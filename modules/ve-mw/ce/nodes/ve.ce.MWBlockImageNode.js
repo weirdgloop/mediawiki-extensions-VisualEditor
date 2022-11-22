@@ -43,6 +43,8 @@ ve.ce.MWBlockImageNode = function VeCeMWBlockImageNode() {
 	} else {
 		$image = $( '<img>' )
 			.addClass( 'mw-file-element' )
+			.attr('loading', 'lazy')
+			.attr('decoding', 'async')
 			.attr( 'src', this.getResolvedAttribute( 'src' ) );
 		this.$a = $( '<a>' )
 			.addClass( 'mw-file-description' )
