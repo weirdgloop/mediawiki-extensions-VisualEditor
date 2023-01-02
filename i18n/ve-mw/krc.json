@@ -3,7 +3,8 @@
 		"authors": [
 			"Ernác",
 			"Iltever",
-			"TMg"
+			"TMg",
+			"Къарачайлы"
 		]
 	},
 	"tooltip-ca-createsource": "Бетни чыкъгъан кодун къура",
@@ -30,7 +31,7 @@
 	"visualeditor-dialog-media-choose-image": "Бу суратны хайырландыр",
 	"visualeditor-dialog-media-content-filename": "Файлны аты",
 	"visualeditor-dialog-media-content-section": "Башлыкъ",
-	"visualeditor-dialog-media-goback": "Артха",
+	"visualeditor-dialog-media-goback": "Кери",
 	"visualeditor-dialog-media-info-artist": "$1 джюкледи",
 	"visualeditor-dialog-media-info-audiofile": "Аудиофайл",
 	"visualeditor-dialog-media-info-created": "Къуралгъаны: $1",
@@ -147,7 +148,7 @@
 	"visualeditor-editnotices-tooltip": "Редакторлукъ этиуню юсюнден къысха хапарла",
 	"visualeditor-editsummary": "Тюрлендириулеригизни суратлагъыз",
 	"visualeditor-feedback-defaultmessage": "URL: $1",
-	"visualeditor-formatdropdown-format-mw-heading1": "Бетни аты",
+	"visualeditor-formatdropdown-format-mw-heading1": "Бетни башлыгъы",
 	"visualeditor-formatdropdown-format-mw-heading2": "Башлыкъ",
 	"visualeditor-formatdropdown-format-mw-heading3": "Тюббашлыкъ 1",
 	"visualeditor-formatdropdown-format-mw-heading4": "Тюббашлыкъ 2",
