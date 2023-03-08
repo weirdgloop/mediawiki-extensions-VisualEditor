@@ -41,7 +41,8 @@
 			"ネイ",
 			"Yamagata Yusuke",
 			"Ryoya3",
-			"Sou0012"
+			"Sou0012",
+			"Marine-Blue"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -82,7 +83,7 @@
 	"visualeditor-desc": "MediaWiki 用のビジュアルエディター",
 	"visualeditor-descriptionpagelink": "Project:ビジュアルエディター",
 	"visualeditor-dialog-media-alttext-section": "代替テキスト",
-	"visualeditor-dialog-media-alttext-section-help": "アイテムが見えない人のためのテキストの説明を記述するためにこれを利用できます。この説明は、このメディアアイテムによって与えられる目的と情報が、理解するために十分なものである必要があります。目が見えない人や、スクリーンリーダー・ソフトウェアやテキストのみのブラウザーを利用する他の人たちにとって、これは非常に重要です。",
+	"visualeditor-dialog-media-alttext-section-help": "アイテムが見えない人のためにテキストによる説明を記述することができます。説明文はこのメディアによって与えられる目的と情報を理解するために十分なものでなければいけません。目が見えない人や、スクリーンリーダー・ソフトウェア、テキストブラウザなどを利用する人たちにとって、必要不可欠なものです。",
 	"visualeditor-dialog-media-change-image": "画像を変更",
 	"visualeditor-dialog-media-choose-image": "この画像を使用",
 	"visualeditor-dialog-media-content-description-link": "(説明ページ)",
@@ -232,6 +233,7 @@
 	"visualeditor-dialog-transclusion-help-message": "テンプレートは、コンテンツのフォーマットを提供するものです。このエディタでは、左にテンプレートが提供するオプションを示し、右にそれらのオプションに値を追加することができます。",
 	"visualeditor-dialog-transclusion-help-page-feedback": "[//meta.wikimedia.org/wiki/Special:MyLanguage/Talk:WMDE_Technical_Wishes/VisualEditor_template_dialog_improvements フィードバックを残す]",
 	"visualeditor-dialog-transclusion-help-page-help": "[//www.mediawiki.org/wiki/Special:MyLanguage/Help:VisualEditor/User_guide#Editing_templates テンプレートの編集に関するヘルプ]",
+	"visualeditor-dialog-transclusion-help-page-shortcuts": "[//www.mediawiki.org/wiki/Special:MyLanguage/VisualEditor/Portal/Keyboard_shortcuts#Template_editor_dialog_shortcuts_and_keyboard_interactions キーボード ショートカット]",
 	"visualeditor-dialog-transclusion-deprecated-parameter": "非推奨のフィールド",
 	"visualeditor-dialog-transclusion-deprecated-parameter-description": "以下の理由によりこのフィールドは推奨されません。$1",
 	"visualeditor-dialog-transclusion-loading": "読み込み中...",
