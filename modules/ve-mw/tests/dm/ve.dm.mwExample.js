@@ -827,6 +827,7 @@ ve.dm.mwExample.domToDataCases = {
 			{
 				type: 'mwTable',
 				attributes: {
+					hasExpandedAttrs: false,
 					wikitable: true,
 					sortable: true,
 					originalClasses: 'wikitable sortable wikitable',
