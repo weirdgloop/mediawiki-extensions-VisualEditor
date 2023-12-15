@@ -286,7 +286,8 @@ class ParsoidHelper {
 			$title,
 			'POST', $path, $data,
 			[
-				'If-Match' => $etag,
+				// WGL - Fix passing null to trim() in MultiHttpClient.
+				'If-Match' => $etag ?? '',
 				'Accept-Language' => ( $pageLanguage ?: $title->getPageLanguage() )->getCode(),
 			]
 		);
