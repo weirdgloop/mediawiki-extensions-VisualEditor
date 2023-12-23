@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Abanima",
+			"Alshamiri1",
 			"Amire80",
 			"Ciphers",
 			"Claw eg",
 			"Elfalem",
+			"FShbib",
 			"Jdforrester",
 			"Maroen1990",
 			"Meno25",
@@ -18,6 +20,7 @@
 			"아라"
 		]
 	},
+	"tag-editcheck-references-description": "يعتقد EditCheck أنه ربما كانت هناك حاجة إلى مرجع في هذا التعديل",
 	"tag-visualeditor": "[[{{MediaWiki:visualeditor-descriptionpagelink}}|تحرير مرئي]]",
 	"tag-visualeditor-description": "تم التعديل باستخدام [[{{MediaWiki:visualeditor-descriptionpagelink}}|المحرر المرئي]]",
 	"tag-visualeditor-needcheck": "[[{{MediaWiki:visualeditor-descriptionpagelink}}|المحرر المرئي: تحقق]]",
