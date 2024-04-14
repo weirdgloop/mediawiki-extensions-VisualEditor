@@ -220,6 +220,18 @@ class Hooks implements
 			->makeConfig( 'visualeditor' );
 		$output = $context->getOutput();
 
+		// WGL - Revert 51759c3f7eef4f0e509c7e47e967eb3128db1e82 as we want $wgVisualEditorEnableDiffPage to be configurable.
+		if ( !(
+			// Enabled globally on wiki
+			$veConfig->get( 'VisualEditorEnableDiffPage' ) ||
+			// Enabled by query param (deprecated)
+			$output->getRequest()->getVal( 'visualdiff' ) !== null ||
+			// Enabled by query param
+			$output->getRequest()->getVal( 'diffmode' ) === 'visual'
+		) ) {
+			return;
+		}
+
 		// Return early if not viewing a diff of an allowed type.
 		if ( !ApiVisualEditor::isAllowedContentType( $veConfig, $textSlotDiffRenderer->getContentModel() )
 			|| $output->getActionName() !== 'view'

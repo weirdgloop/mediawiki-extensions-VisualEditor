@@ -78,6 +78,9 @@
 			"description": "BetaFeatures integration has been removed. This option allows using the old beta feature preference values ('visualeditor-enable') on wikis where it was previously enabled, until it is migrated (T344762).",
 			"value": false
 		},
+		"VisualEditorEnableDiffPage": {
+			"value": true
+		},
 		"VisualEditorEnableTocWidget": {
 			"value": false
 		},
