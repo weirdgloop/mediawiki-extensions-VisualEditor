@@ -3,7 +3,6 @@
 		"authors": [
 			"Abanima",
 			"Alshamiri1",
-			"Amire80",
 			"Ciphers",
 			"Claw eg",
 			"Elfalem",
@@ -17,10 +16,11 @@
 			"زكريا",
 			"محمد أحمد عبد الفتاح",
 			"مشعل الحربي",
-			"아라"
+			"아라",
+			"علاء"
 		]
 	},
-	"tag-editcheck-references-description": "يعتقد EditCheck أنه ربما كانت هناك حاجة إلى مرجع في هذا التعديل",
+	"tag-editcheck-references-description": "يعتقد (إديت تشيك) أنّه قد يكون هناك حاجة إلى مرجع",
 	"tag-visualeditor": "[[{{MediaWiki:visualeditor-descriptionpagelink}}|تحرير مرئي]]",
 	"tag-visualeditor-description": "تم التعديل باستخدام [[{{MediaWiki:visualeditor-descriptionpagelink}}|المحرر المرئي]]",
 	"tag-visualeditor-needcheck": "[[{{MediaWiki:visualeditor-descriptionpagelink}}|المحرر المرئي: تحقق]]",
