@@ -1,7 +1,7 @@
 /*!
  * VisualEditor MediaWiki edit mode tool classes.
  *
- * @copyright 2011-2020 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright See AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -77,7 +77,7 @@ mw.libs.ve.MWEditModeTool.prototype.onSelect = function () {
  * @inheritdoc
  */
 mw.libs.ve.MWEditModeTool.prototype.onUpdateState = function () {
-	var modeAvailable = this.isModeAvailable( this.constructor.static.editMode );
+	const modeAvailable = this.isModeAvailable( this.constructor.static.editMode );
 
 	// Change title if state has changed
 	if ( this.modeAvailable !== modeAvailable ) {

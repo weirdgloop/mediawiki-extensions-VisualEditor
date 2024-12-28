@@ -1,7 +1,7 @@
 /*!
  * VisualEditor MWAlienAnnotationContextItem class.
  *
- * @copyright 2011-2021 VisualEditor Team and others; see http://ve.mit-license.org
+ * @copyright See AUTHORS.txt
  */
 
 /**
@@ -35,7 +35,7 @@ ve.ui.MWAlienAnnotationContextItem.static.modelClasses = [
 /* Methods */
 
 ve.ui.MWAlienAnnotationContextItem.prototype.getLabelMessage = function () {
-	var type = this.model.getAttribute( 'type' );
+	const type = this.model.getAttribute( 'type' );
 	if ( type.indexOf( '/End', type.length - 4 ) !== -1 ) {
 		return mw.message( 'visualeditor-annotations-default-end' ).text();
 	} else {
@@ -44,7 +44,7 @@ ve.ui.MWAlienAnnotationContextItem.prototype.getLabelMessage = function () {
 };
 
 ve.ui.MWAlienAnnotationContextItem.prototype.getDescriptionMessage = function () {
-	var type = this.model.getAttribute( 'type' );
+	const type = this.model.getAttribute( 'type' );
 	if ( type.indexOf( '/End', type.length - 4 ) !== -1 ) {
 		return '';
 	}

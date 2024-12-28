@@ -1,7 +1,7 @@
 /*!
  * VisualEditor user interface MWTemplatesUsedPage class.
  *
- * @copyright 2011-2016 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright See AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -14,11 +14,10 @@
  * @constructor
  * @param {string} name Unique symbolic name of page
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$overlay] Overlay to render dropdowns in
+ * @param {jQuery} [config.$overlay] Overlay to render dropdowns in
  */
 ve.ui.MWTemplatesUsedPage = function VeUiMWTemplatesUsedPage() {
-	var page = this,
-		target = ve.init.target;
+	const target = ve.init.target;
 
 	// Parent constructor
 	ve.ui.MWTemplatesUsedPage.super.apply( this, arguments );
@@ -30,9 +29,7 @@ ve.ui.MWTemplatesUsedPage = function VeUiMWTemplatesUsedPage() {
 	} );
 
 	this.templatesUsedFieldset.$group.addClass( [
-		'mw-body-content',
-		// HACK: T287733
-		mw.config.get( 'skin' ) === 'vector' || mw.config.get( 'skin' ) === 'vector-2022' ? 'vector-body' : null
+		'mw-body-content'
 	] );
 
 	target.getContentApi().get( {
@@ -40,20 +37,20 @@ ve.ui.MWTemplatesUsedPage = function VeUiMWTemplatesUsedPage() {
 		paction: 'templatesused',
 		page: target.getPageName(),
 		uselang: mw.config.get( 'wgUserLanguage' )
-	} ).then( function ( response ) {
-		var templatesUsed = $.parseHTML( response.visualeditor );
+	} ).then( ( response ) => {
+		const templatesUsed = $.parseHTML( response.visualeditor );
 		if ( templatesUsed.length && $( templatesUsed ).find( 'li' ).length ) {
 			return templatesUsed;
 		} else {
 			return ve.createDeferred().reject().promise();
 		}
-	} ).then( function ( templatesUsed ) {
+	} ).then( ( templatesUsed ) => {
 		// templatesUsed is an array of nodes
 		// eslint-disable-next-line no-jquery/no-append-html
-		page.templatesUsedFieldset.$group.append( templatesUsed );
-		ve.targetLinksToNewWindow( page.templatesUsedFieldset.$group[ 0 ] );
-	}, function () {
-		page.templatesUsedFieldset.$group.append(
+		this.templatesUsedFieldset.$group.append( templatesUsed );
+		ve.targetLinksToNewWindow( this.templatesUsedFieldset.$group[ 0 ] );
+	}, () => {
+		this.templatesUsedFieldset.$group.append(
 			$( '<em>' ).text( ve.msg( 'visualeditor-dialog-meta-templatesused-noresults' ) )
 		);
 	} );

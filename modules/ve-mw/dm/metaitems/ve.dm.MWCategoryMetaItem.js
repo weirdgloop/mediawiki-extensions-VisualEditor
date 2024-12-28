@@ -1,7 +1,7 @@
 /*!
  * VisualEditor DataModel MWCategoryMetaItem class.
  *
- * @copyright 2011-2020 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright See AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -34,7 +34,7 @@ ve.dm.MWCategoryMetaItem.static.matchRdfaTypes = [ 'mw:PageProp/Category' ];
 
 ve.dm.MWCategoryMetaItem.static.toDataElement = function ( domElements ) {
 	// Parsoid: LinkHandlerUtils::serializeAsWikiLink
-	var href = domElements[ 0 ].getAttribute( 'href' ),
+	const href = domElements[ 0 ].getAttribute( 'href' ),
 		titleAndFragment = href.match( /^(.*?)(?:#(.*))?\s*$/ );
 	return {
 		type: this.name,
@@ -46,24 +46,22 @@ ve.dm.MWCategoryMetaItem.static.toDataElement = function ( domElements ) {
 };
 
 ve.dm.MWCategoryMetaItem.static.toDomElements = function ( dataElement, doc, converter ) {
-	var domElement;
-	var category = dataElement.attributes.category || '';
+	let domElement;
+	const category = dataElement.attributes.category || '';
 	if ( converter.isForPreview() ) {
 		domElement = doc.createElement( 'a' );
-		var title = mw.Title.newFromText( category );
+		const title = mw.Title.newFromText( category );
 		domElement.setAttribute( 'href', title.getUrl() );
 		domElement.appendChild( doc.createTextNode( title.getMainText() ) );
 	} else {
 		domElement = doc.createElement( 'link' );
-		var sortkey = dataElement.attributes.sortkey || '';
+		const sortkey = dataElement.attributes.sortkey || '';
 		domElement.setAttribute( 'rel', 'mw:PageProp/Category' );
 
 		// Parsoid: WikiLinkHandler::renderCategory
-		var href = mw.libs.ve.encodeParsoidResourceName( category );
+		let href = mw.libs.ve.encodeParsoidResourceName( category );
 		if ( sortkey !== '' ) {
-			href += '#' + sortkey.replace( /[%? [\]#|<>]/g, function ( match ) {
-				return encodeURIComponent( match );
-			} );
+			href += '#' + sortkey.replace( /[%? [\]#|<>]/g, ( match ) => encodeURIComponent( match ) );
 		}
 
 		domElement.setAttribute( 'href', href );
@@ -92,39 +90,39 @@ ve.dm.MWCategoryMetaItem.static.describeChange = function ( key, change ) {
 	}
 
 	// Parent method
-	return ve.dm.MWCategoryMetaItem.parent.static.describeChange.apply( this, arguments );
+	return ve.dm.MWCategoryMetaItem.super.static.describeChange.apply( this, arguments );
 };
 
 /* Registration */
 
 ve.dm.modelRegistry.register( ve.dm.MWCategoryMetaItem );
 
-ve.ui.metaListDiffRegistry.register( 'mwCategory', function ( diffElement, diffQueue, documentNode /* , documentSpacerNode */ ) {
+ve.ui.metaListDiffRegistry.register( 'mwCategory', ( diffElement, diffQueue, documentNode /* , documentSpacerNode */ ) => {
 	diffQueue = diffElement.processQueue( diffQueue );
 
 	if ( !diffQueue.length ) {
 		return;
 	}
 
-	var catLinks = document.createElement( 'div' );
+	const catLinks = document.createElement( 'div' );
 	catLinks.setAttribute( 'class', 'catlinks' );
 
-	var headerLink = document.createElement( 'a' );
+	const headerLink = document.createElement( 'a' );
 	headerLink.appendChild( document.createTextNode( ve.msg( 'pagecategories', diffQueue.length ) ) );
 	headerLink.setAttribute( 'href', ve.msg( 'pagecategorieslink' ) );
 
 	catLinks.appendChild( headerLink );
 	catLinks.appendChild( document.createTextNode( ve.msg( 'colon-separator' ) ) );
 
-	var list = document.createElement( 'ul' );
+	const list = document.createElement( 'ul' );
 	catLinks.appendChild( list );
 
-	var catSpacerNode = document.createElement( 'span' );
+	const catSpacerNode = document.createElement( 'span' );
 	catSpacerNode.appendChild( document.createTextNode( ' … ' ) );
 
 	// Wrap each item in the queue in an <li>
-	diffQueue.forEach( function ( diffItem ) {
-		var listItem = document.createElement( 'li' );
+	diffQueue.forEach( ( diffItem ) => {
+		const listItem = document.createElement( 'li' );
 		diffElement.renderQueue(
 			[ diffItem ],
 			listItem, catSpacerNode

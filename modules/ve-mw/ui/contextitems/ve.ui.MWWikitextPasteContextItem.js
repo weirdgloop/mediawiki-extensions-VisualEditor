@@ -1,7 +1,7 @@
 /*!
  * VisualEditor MWWikitextPasteContextItem class.
  *
- * @copyright 2011-2019 VisualEditor Team and others; see http://ve.mit-license.org
+ * @copyright See AUTHORS.txt
  */
 
 /**
@@ -41,15 +41,15 @@ ve.ui.MWWikitextPasteContextItem.static.label = OO.ui.deferMsg( 'visualeditor-wi
  * @inheritdoc
  */
 ve.ui.MWWikitextPasteContextItem.prototype.renderBody = function () {
-	var fragment = this.data.fragment,
+	const fragment = this.data.fragment,
 		doc = this.data.doc,
 		contextRange = this.data.contextRange;
 
-	var convertButton = new OO.ui.ButtonWidget( {
+	const convertButton = new OO.ui.ButtonWidget( {
 		label: ve.msg( 'visualeditor-wikitextconvert-convert' ),
 		flags: [ 'progressive' ]
-	} ).on( 'click', function () {
-		fragment.insertDocument( doc, contextRange ).getPending().then( function () {
+	} ).on( 'click', () => {
+		fragment.insertDocument( doc, contextRange ).getPending().then( () => {
 			fragment.collapseToEnd().select();
 		} );
 		// TODO: Show something if the promise (conversion) fails?

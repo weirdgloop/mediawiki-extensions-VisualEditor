@@ -1,7 +1,7 @@
 /*!
  * VisualEditor DataModel MWFlaggedMetaItem class.
  *
- * @copyright 2011-2020 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright See AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -30,7 +30,7 @@ OO.inheritClass( ve.dm.MWFlaggedMetaItem, ve.dm.MetaItem );
 ve.dm.MWFlaggedMetaItem.static.matchTagNames = [ 'meta' ];
 
 ve.dm.MWFlaggedMetaItem.static.toDataElement = function ( domElements ) {
-	var property = domElements[ 0 ].getAttribute( 'property' );
+	let property = domElements[ 0 ].getAttribute( 'property' );
 
 	if ( !property || this.matchRdfaTypes.indexOf( property ) === -1 ) {
 		// Fallback to first match if somehow unset
@@ -41,8 +41,8 @@ ve.dm.MWFlaggedMetaItem.static.toDataElement = function ( domElements ) {
 };
 
 ve.dm.MWFlaggedMetaItem.static.toDomElements = function ( dataElement, doc, converter ) {
-	var domElement;
-	var property = OO.getProp( dataElement, 'attributes', 'property' );
+	let domElement;
+	let property = OO.getProp( dataElement, 'attributes', 'property' );
 
 	if ( !property || this.matchRdfaTypes.indexOf( property ) === -1 ) {
 		// Fallback to first item if somehow unset

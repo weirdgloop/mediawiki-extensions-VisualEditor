@@ -10,17 +10,17 @@
 
 namespace MediaWiki\Extension\VisualEditor;
 
-use ApiBase;
-use ApiBlockInfoTrait;
-use ApiMain;
-use ApiResult;
 use Article;
-use Config;
-use ContentHandler;
-use DerivativeContext;
-use ExtensionRegistry;
-use IBufferingStatsdDataFactory;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiBlockInfoTrait;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiResult;
+use MediaWiki\Config\Config;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
@@ -30,19 +30,22 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchlistManager;
 use MessageLocalizer;
-use RequestContext;
-use User;
+use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\ParamValidator;
-use WikitextContent;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 class ApiVisualEditor extends ApiBase {
 	use ApiBlockInfoTrait;
@@ -103,9 +106,8 @@ class ApiVisualEditor extends ApiBase {
 
 	/**
 	 * @see EditPage::getUserForPermissions
-	 * @return User
 	 */
-	private function getUserForPermissions() {
+	private function getUserForPermissions(): User {
 		$user = $this->getUser();
 		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			return $this->userFactory->newUnsavedTempUser(
@@ -117,9 +119,8 @@ class ApiVisualEditor extends ApiBase {
 
 	/**
 	 * @see ApiParse::getUserForPreview
-	 * @return User
 	 */
-	private function getUserForPreview() {
+	private function getUserForPreview(): UserIdentity {
 		$user = $this->getUser();
 		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			return $this->userFactory->newUnsavedTempUser(
@@ -232,9 +233,6 @@ class ApiVisualEditor extends ApiBase {
 						}
 						$content = $response['body'];
 						$restbaseHeaders = $response['headers'];
-						if ( $content === false ) {
-							$this->dieWithError( 'apierror-visualeditor-docserver', 'docserver' );
-						}
 					} elseif ( $params['paction'] === 'wikitext' ) {
 						$apiParams = [
 							'action' => 'query',
@@ -268,9 +266,6 @@ class ApiVisualEditor extends ApiBase {
 									$content = $revArr['content'];
 								}
 							}
-						}
-						if ( $content === false ) {
-							$this->dieWithError( 'apierror-visualeditor-docserver', 'docserver' );
 						}
 					}
 				} else {
@@ -328,14 +323,14 @@ class ApiVisualEditor extends ApiBase {
 				$builder = new TextboxBuilder();
 				$protectedClasses = $builder->getTextboxProtectionCSSClasses( $title );
 
-				// Simplified EditPage::getEditPermissionErrors()
+				// Simplified EditPage::getEditPermissionStatus()
 				// TODO: Use API
 				// action=query&prop=info&intestactions=edit&intestactionsdetail=full&errorformat=html&errorsuselocal=1
-				$permErrors = $permissionManager->getPermissionErrors(
-					'edit', $this->getUserForPermissions(), $title, 'full' );
-				if ( $permErrors ) {
+				$status = $permissionManager->getPermissionStatus(
+					'edit', $this->getUserForPermissions(), $title, PermissionManager::RIGOR_FULL );
+				if ( !$status->isGood() ) {
 					// Show generic permission errors, including page protection, user blocks, etc.
-					$notice = $this->getOutput()->formatPermissionsErrorMessage( $permErrors, 'edit' );
+					$notice = $this->getOutput()->formatPermissionStatus( $status, 'edit' );
 					// That method returns wikitext (eww), hack to get it parsed:
 					$notice = ( new RawMessage( '$1', [ $notice ] ) )->page( $title )->parseAsBlock();
 					// Invent a message key 'permissions-error' to store in $notices
@@ -364,14 +359,14 @@ class ApiVisualEditor extends ApiBase {
 				}
 
 				// Will be false e.g. if user is blocked or page is protected
-				$canEdit = !$permErrors;
+				$canEdit = $status->isGood();
 
 				$blockinfo = null;
 				// Blocked user notice
 				if ( $permissionManager->isBlockedFrom( $user, $title, true ) ) {
 					$block = $user->getBlock();
 					if ( $block ) {
-						// Already added to $notices via #getPermissionErrors above.
+						// Already added to $notices via #getPermissionStatus above.
 						// Add block info for MobileFrontend:
 						$blockinfo = $this->getBlockDetails( $block );
 					}
@@ -470,6 +465,7 @@ class ApiVisualEditor extends ApiBase {
 				}
 
 				if ( isset( $content ) ) {
+					Assert::postcondition( is_string( $content ), 'Content expected' );
 					$result['content'] = $content;
 					$result['preloaded'] = $preloaded;
 				}
@@ -494,14 +490,11 @@ class ApiVisualEditor extends ApiBase {
 				$content = $this->transformWikitext(
 					$title, $wikitext, true
 				)['body'];
-				if ( $content === false ) {
-					$this->dieWithError( 'apierror-visualeditor-docserver', 'docserver' );
-				} else {
-					$result = [
-						'result' => 'success',
-						'content' => $content
-					];
-				}
+				Assert::postcondition( is_string( $content ), 'Content expected' );
+				$result = [
+					'result' => 'success',
+					'content' => $content
+				];
 				break;
 		}
 
@@ -515,7 +508,7 @@ class ApiVisualEditor extends ApiBase {
 	 * @param int $namespaceId Namespace ID
 	 * @return bool
 	 */
-	public static function isAllowedNamespace( Config $config, $namespaceId ) {
+	public static function isAllowedNamespace( Config $config, int $namespaceId ): bool {
 		return in_array( $namespaceId, self::getAvailableNamespaceIds( $config ), true );
 	}
 
@@ -525,7 +518,7 @@ class ApiVisualEditor extends ApiBase {
 	 * @param Config $config
 	 * @return int[]
 	 */
-	public static function getAvailableNamespaceIds( Config $config ) {
+	public static function getAvailableNamespaceIds( Config $config ): array {
 		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		$configuredNamespaces = array_replace(
 			ExtensionRegistry::getInstance()->getAttribute( 'VisualEditorAvailableNamespaces' ),
@@ -548,7 +541,7 @@ class ApiVisualEditor extends ApiBase {
 	 * @param string $contentModel Content model ID
 	 * @return bool
 	 */
-	public static function isAllowedContentType( Config $config, $contentModel ) {
+	public static function isAllowedContentType( Config $config, string $contentModel ): bool {
 		$availableContentModels = array_merge(
 			ExtensionRegistry::getInstance()->getAttribute( 'VisualEditorAvailableContentModels' ),
 			$config->get( 'VisualEditorAvailableContentModels' )

@@ -1,7 +1,7 @@
 /*!
  * VisualEditor DataModel MediaWiki-specific example data sets.
  *
- * @copyright 2011-2020 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright See AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -14,11 +14,9 @@ ve.dm.mwExample = {};
 
 ve.dm.mwExample.baseUri = 'http://example.com/wiki/';
 
-ve.dm.mwExample.createExampleDocument = ( name, store, base ) =>
-	ve.dm.example.createExampleDocumentFromObject( name, store, ve.dm.mwExample, base || ve.dm.mwExample.baseUri );
+ve.dm.mwExample.createExampleDocument = ( name, store, base ) => ve.dm.example.createExampleDocumentFromObject( name, store, ve.dm.mwExample, base || ve.dm.mwExample.baseUri );
 
-ve.dm.mwExample.createExampleDocumentFromData = ( data, store, base ) =>
-	ve.dm.example.createExampleDocumentFromData( data, store, base || ve.dm.mwExample.baseUri );
+ve.dm.mwExample.createExampleDocumentFromData = ( data, store, base ) => ve.dm.example.createExampleDocumentFromData( data, store, base || ve.dm.mwExample.baseUri );
 
 ve.dm.mwExample.MWTransclusion = {
 	blockOpen: ve.dm.example.singleLine`
@@ -289,7 +287,7 @@ ve.dm.mwExample.MWBlockImage = {
 	html: ve.dm.example.singleLine`
 		<figure typeof="mw:Image/Thumb" class="mw-halign-right foobar">
 			<a href="./Foo" class="mw-file-description">
-				<img src="${ve.ce.minImgDataUri}" class="mw-file-element" width="1" height="2" resource="./FooBar" alt="alt text">
+				<img src="${ ve.ce.minImgDataUri }" class="mw-file-element" width="1" height="2" resource="./FooBar" alt="alt text">
 			</a>
 			<figcaption>abc</figcaption>
 		</figure>
@@ -319,7 +317,7 @@ ve.dm.mwExample.MWBlockImage = {
 		},
 		{ type: 'mwImageCaption' },
 		{ type: 'paragraph', internal: { generated: 'wrapper' } },
-		'a', 'b', 'c',
+		...'abc',
 		{ type: '/paragraph' },
 		{ type: '/mwImageCaption' },
 		{ type: '/mwBlockImage' }
@@ -402,7 +400,7 @@ ve.dm.mwExample.mwNowikiAnnotation = {
 
 ve.dm.mwExample.mwNowiki = [
 	{ type: 'paragraph' },
-	'F', 'o', 'o',
+	...'Foo',
 	[ '[', [ ve.dm.mwExample.mwNowikiAnnotation ] ],
 	[ '[', [ ve.dm.mwExample.mwNowikiAnnotation ] ],
 	[ 'B', [ ve.dm.mwExample.mwNowikiAnnotation ] ],
@@ -410,7 +408,7 @@ ve.dm.mwExample.mwNowiki = [
 	[ 'r', [ ve.dm.mwExample.mwNowikiAnnotation ] ],
 	[ ']', [ ve.dm.mwExample.mwNowikiAnnotation ] ],
 	[ ']', [ ve.dm.mwExample.mwNowikiAnnotation ] ],
-	'B', 'a', 'z',
+	...'Baz',
 	{ type: '/paragraph' },
 	{ type: 'internalList' },
 	{ type: '/internalList' }
@@ -441,9 +439,7 @@ ve.dm.mwExample.withMeta = [
 	},
 	{ type: '/mwAlienMeta' },
 	{ type: 'paragraph' },
-	'F',
-	'o',
-	'o',
+	...'Foo',
 	{
 		type: 'mwCategory',
 		attributes: {
@@ -452,16 +448,13 @@ ve.dm.mwExample.withMeta = [
 		}
 	},
 	{ type: '/mwCategory' },
-	'B',
-	'a',
-	'r',
+	...'Bar',
 	{
 		type: 'mwAlienMeta',
 		originalDomElements: $.parseHTML( '<meta property="mw:foo" content="bar" />' )
 	},
 	{ type: '/mwAlienMeta' },
-	'B',
-	'a',
+	...'Ba',
 	{
 		type: 'comment',
 		attributes: {
@@ -528,14 +521,7 @@ ve.dm.mwExample.withMetaRealData = [
 	},
 	{ type: '/mwAlienMeta' },
 	{ type: 'paragraph' },
-	'F',
-	'o',
-	'o',
-	'B',
-	'a',
-	'r',
-	'B',
-	'a',
+	...'FooBarBa',
 	{
 		type: 'comment',
 		attributes: {
@@ -810,7 +796,7 @@ ve.dm.mwExample.domToDataCases = {
 		`
 	},
 	mwImage: {
-		body: `<p>${ve.dm.mwExample.MWInlineImage.html}</p>`,
+		body: `<p>${ ve.dm.mwExample.MWInlineImage.html }</p>`,
 		data: [
 			{ type: 'paragraph' },
 			ve.dm.mwExample.MWInlineImage.data,
@@ -820,12 +806,12 @@ ve.dm.mwExample.domToDataCases = {
 			{ type: '/internalList' }
 		],
 		ceHtml: ve.dm.example.singleLine`
-			<p class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode">
-			<span class="ve-ce-branchNode-slug ve-ce-branchNode-inlineSlug"></span>
-			<a class="mw-file-description ve-ce-leafNode ve-ce-focusableNode ve-ce-mwInlineImageNode" contenteditable="false" href="${new URL( './File:Wiki.png', ve.dm.mwExample.baseUri )}">
+			${ ve.dm.example.ceParagraph }
+			${ ve.dm.example.inlineSlug }
+			<a class="mw-file-description ve-ce-leafNode ve-ce-focusableNode ve-ce-mwInlineImageNode" contenteditable="false" href="${ new URL( './File:Wiki.png', ve.dm.mwExample.baseUri ) }">
 				<img src="http://upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png" class="mw-file-element" width="135" height="155" style="vertical-align: text-top;">
 			</a>
-			${ve.dm.example.inlineSlug}
+			${ ve.dm.example.inlineSlug }
 			</p>
 		`,
 		storeItems: ve.dm.mwExample.MWInlineImage.storeItems
@@ -841,12 +827,12 @@ ve.dm.mwExample.domToDataCases = {
 			{ type: '/internalList' }
 		],
 		ceHtml: ve.dm.example.singleLine`
-			<p class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode">
-			<span class="ve-ce-branchNode-slug ve-ce-branchNode-inlineSlug"></span>
-			<a class="mw-file-description ve-ce-leafNode ve-ce-focusableNode ve-ce-mwInlineImageNode" contenteditable="false" href="${new URL( './File:Wiki.png', ve.dm.mwExample.baseUri )}">
+			${ ve.dm.example.ceParagraph }
+			${ ve.dm.example.inlineSlug }
+			<a class="mw-file-description ve-ce-leafNode ve-ce-focusableNode ve-ce-mwInlineImageNode" contenteditable="false" href="${ new URL( './File:Wiki.png', ve.dm.mwExample.baseUri ) }">
 				<img src="http://upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png" class="mw-file-element" width="135" height="155" style="vertical-align: text-top;">
 			</a>
-			${ve.dm.example.inlineSlug}
+			${ ve.dm.example.inlineSlug }
 			</p>
 		`,
 		storeItems: ve.dm.mwExample.MWInlineImage.storeItems
@@ -860,10 +846,10 @@ ve.dm.mwExample.domToDataCases = {
 					level: 2
 				}
 			},
-			'F', 'o', 'o',
+			...'Foo',
 			{ type: '/mwHeading' },
 			{ type: 'mwPreformatted' },
-			'B', 'a', 'r',
+			...'Bar',
 			{ type: '/mwPreformatted' },
 			{ type: 'internalList' },
 			{ type: '/internalList' }
@@ -886,7 +872,7 @@ ve.dm.mwExample.domToDataCases = {
 			{ type: 'tableRow' },
 			{ type: 'tableCell', attributes: { style: 'data' } },
 			{ type: 'paragraph', internal: { generated: 'wrapper' } },
-			'F', 'o', 'o',
+			...'Foo',
 			{ type: '/paragraph' },
 			{ type: '/tableCell' },
 			{ type: '/tableRow' },
@@ -946,7 +932,15 @@ ve.dm.mwExample.domToDataCases = {
 					imgWrapperClassAttr: null,
 					src: null,
 					isError: true,
-					errorText: 'File:!Example.jpg'
+					errorText: 'File:!Example.jpg',
+					mw: {
+						errors: [
+							{
+								key: 'apierror-filedoesnotexist',
+								message: 'This image does not exist.'
+							}
+						]
+					}
 				}
 			},
 			{ type: 'mwGalleryImageCaption' },
@@ -967,7 +961,7 @@ ve.dm.mwExample.domToDataCases = {
 			<ul typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 				<li class="gallerybox">
 					<div class="thumb">
-						<span typeof="mw:Error mw:File">
+						<span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'>
 							<a href="./Special:FilePath/!Example.jpg">
 								<span class="mw-file-element mw-broken-media" resource="./File:!Example.jpg" data-width="120" data-height="120">File:!Example.jpg</span>
 							</a>
@@ -985,8 +979,8 @@ ve.dm.mwExample.domToDataCases = {
 					<div class="thumb" style="width: 180px;">
 						<span typeof="mw:File">
 							<a href="./File:Example.jpg" class="mw-file-description">
-								<img resource="./File:Example.jpg" src="${ve.ce.minImgDataUri}" class="mw-file-element" decoding="async" data-file-width="400"
-								 data-file-height="267" data-file-type="bitmap" height="120" width="180" srcset="${ve.ce.minImgDataUri} 2x"/>
+								<img resource="./File:Example.jpg" src="${ ve.ce.minImgDataUri }" class="mw-file-element" decoding="async" data-file-width="400"
+								 data-file-height="267" data-file-type="bitmap" height="120" width="180" srcset="${ ve.ce.minImgDataUri } 2x"/>
 							</a>
 						</span>
 					</div>
@@ -1018,12 +1012,13 @@ ve.dm.mwExample.domToDataCases = {
 					width: 180,
 					height: 120,
 					resource: './File:Example.jpg',
-					href: null,
+					href: './File:Example.jpg',
 					imageClassAttr: 'mw-file-element',
 					imgWrapperClassAttr: 'mw-file-description',
 					src: ve.ce.minImgDataUri,
 					isError: false,
-					errorText: null
+					errorText: null,
+					mw: {}
 				}
 			},
 			{ type: 'mwGalleryImageCaption' },
@@ -1046,7 +1041,7 @@ ve.dm.mwExample.domToDataCases = {
 					<div class="thumb">
 						<span typeof="mw:File">
 							<a href="./File:Example.jpg" class="mw-file-description">
-								<img resource="./File:Example.jpg" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="120" width="180"/>
+								<img resource="./File:Example.jpg" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="120" width="180"/>
 							</a>
 						</span>
 					</div>
@@ -1062,7 +1057,7 @@ ve.dm.mwExample.domToDataCases = {
 					<div class="thumb" style="width: 180px;">
 						<span typeof="mw:File">
 							<a href="./File:Example.jpg" class="mw-file-description">
-								<img resource="./File:Example.jpg" src="${ve.ce.minImgDataUri}" class="mw-file-element" data-file-width="400" data-file-height="267" data-file-type="bitmap" height="120" width="180"/>
+								<img resource="./File:Example.jpg" src="${ ve.ce.minImgDataUri }" class="mw-file-element" data-file-width="400" data-file-height="267" data-file-type="bitmap" height="120" width="180"/>
 							</a>
 						</span>
 					</div>
@@ -1094,12 +1089,13 @@ ve.dm.mwExample.domToDataCases = {
 					width: 180,
 					height: 120,
 					resource: './File:Example.jpg',
-					href: null,
+					href: './File:Example.jpg',
 					imageClassAttr: 'mw-file-element',
 					imgWrapperClassAttr: 'mw-file-description',
 					src: ve.ce.minImgDataUri,
 					isError: false,
-					errorText: null
+					errorText: null,
+					mw: {}
 				}
 			},
 			{ type: 'mwGalleryImageCaption' },
@@ -1109,7 +1105,7 @@ ve.dm.mwExample.domToDataCases = {
 					generated: 'wrapper'
 				}
 			},
-			'C', 'a', 'p', 't', 'i', 'o', 'n',
+			...'Caption',
 			{ type: '/paragraph' },
 			{ type: '/mwGalleryImageCaption' },
 			{ type: '/mwGalleryImage' },
@@ -1123,7 +1119,7 @@ ve.dm.mwExample.domToDataCases = {
 					<div class="thumb">
 						<span typeof="mw:File">
 							<a href="./File:Example.jpg" class="mw-file-description">
-								<img resource="./File:Example.jpg" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="120" width="180"/>
+								<img resource="./File:Example.jpg" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="120" width="180"/>
 							</a>
 						</span>
 					</div>
@@ -1157,7 +1153,7 @@ ve.dm.mwExample.domToDataCases = {
 					width: 120,
 					height: 120,
 					resource: './Foo',
-					href: null,
+					href: './Foo',
 					imageClassAttr: 'mw-file-element',
 					imgWrapperClassAttr: 'mw-file-description',
 					src: ve.ce.minImgDataUri,
@@ -1176,7 +1172,7 @@ ve.dm.mwExample.domToDataCases = {
 					<div class="thumb">
 						<span typeof="mw:Image">
 							<a href="./Foo" class="mw-file-description">
-								<img resource="./Foo" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="120" width="120"/>
+								<img resource="./Foo" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="120" width="120"/>
 							</a>
 						</span>
 					</div>
@@ -1209,7 +1205,7 @@ ve.dm.mwExample.domToDataCases = {
 					width: 120,
 					height: 120,
 					resource: './Foo',
-					href: null,
+					href: './Foo',
 					imageClassAttr: 'mw-file-element',
 					imgWrapperClassAttr: 'mw-file-description',
 					src: ve.ce.minImgDataUri,
@@ -1230,7 +1226,7 @@ ve.dm.mwExample.domToDataCases = {
 					<div class="thumb">
 						<span typeof="mw:Image">
 							<a href="./Foo" class="mw-file-description">
-								<img resource="./Foo" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="120" width="120"/>
+								<img resource="./Foo" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="120" width="120"/>
 							</a>
 						</span>
 					</div>
@@ -1243,7 +1239,7 @@ ve.dm.mwExample.domToDataCases = {
 		body: ve.dm.example.singleLine`
 			<figure typeof="mw:Image/Thumb">
 				<a href="./Foo" class="mw-file-description">
-					<img resource="./Foo" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="300" width="300"/>
+					<img resource="./Foo" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="300" width="300"/>
 				</a>
 			</figure>
 		`,
@@ -1284,7 +1280,7 @@ ve.dm.mwExample.domToDataCases = {
 		normalizedBody: ve.dm.example.singleLine`
 			<figure typeof="mw:Image/Thumb">
 				<a href="./Foo" class="mw-file-description">
-					<img resource="./Foo" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="300" width="300"/>
+					<img resource="./Foo" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="300" width="300"/>
 				</a>
 				<figcaption></figcaption>
 			</figure>
@@ -1294,7 +1290,7 @@ ve.dm.mwExample.domToDataCases = {
 		body: ve.dm.example.singleLine`
 			<figure typeof="mw:Image/Thumb">
 				<a href="./Foo" class="mw-file-description">
-					<img resource="./Foo" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="300" width="300"/>
+					<img resource="./Foo" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="300" width="300"/>
 				</a>
 				<figcaption></figcaption>
 			</figure>
@@ -1338,7 +1334,7 @@ ve.dm.mwExample.domToDataCases = {
 		body: ve.dm.example.singleLine`
 			<figure typeof="mw:Image/Thumb">
 				<a href="./Foo" class="mw-file-description">
-					<img resource="./Foo" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="300" width="300"/>
+					<img resource="./Foo" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="300" width="300"/>
 				</a>
 				<figcaption>Caption</figcaption>
 			</figure>
@@ -1371,7 +1367,7 @@ ve.dm.mwExample.domToDataCases = {
 					generated: 'wrapper'
 				}
 			},
-			'C', 'a', 'p', 't', 'i', 'o', 'n',
+			...'Caption',
 			{ type: '/paragraph' },
 			{ type: '/mwImageCaption' },
 			{ type: '/mwBlockImage' },
@@ -1408,7 +1404,7 @@ ve.dm.mwExample.domToDataCases = {
 		fromDataBody: ve.dm.example.singleLine`
 			<figure typeof="mw:Image/Thumb">
 				<a href="./Foo" class="mw-file-description">
-					<img resource="./Foo" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="300" width="300"/>
+					<img resource="./Foo" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="300" width="300"/>
 				</a>
 			</figure>
 		`
@@ -1444,7 +1440,7 @@ ve.dm.mwExample.domToDataCases = {
 		fromDataBody: ve.dm.example.singleLine`
 			<figure typeof="mw:Image/Thumb">
 				<a href="./Foo" class="mw-file-description">
-					<img resource="./Foo" src="${ve.ce.minImgDataUri}" class="mw-file-element" height="300" width="300"/>
+					<img resource="./Foo" src="${ ve.ce.minImgDataUri }" class="mw-file-element" height="300" width="300"/>
 				</a>
 			</figure>
 		`
@@ -1687,7 +1683,7 @@ ve.dm.mwExample.domToDataCases = {
 	'mw:AlienInlineExtension': {
 		body: ve.dm.example.singleLine`
 			<p>
-				<img src="${ve.ce.minImgDataUri}" width="100" height="20" alt="Bar" typeof="mw:Extension/score"
+				<img src="${ ve.ce.minImgDataUri }" width="100" height="20" alt="Bar" typeof="mw:Extension/score"
 					 data-mw='{"name":"score","attrs":{},"body":{"extsrc":"\\\\relative c&#39; { e d c d e e e }"}}'
 					 data-parsoid="1" about="#mwt1" />
 			</p>
@@ -1696,7 +1692,7 @@ ve.dm.mwExample.domToDataCases = {
 			<p>
 				<span typeof="mw:Extension/score"
 					 data-mw='{"name":"score","attrs":{},"body":{"extsrc":"\\\\relative c&#39; { d d d e e e }"}}'
-					 src="${ve.ce.minImgDataUri}" width="100" height="20" alt="Bar" data-parsoid="1" about="#mwt1" />
+					 src="${ ve.ce.minImgDataUri }" width="100" height="20" alt="Bar" data-parsoid="1" about="#mwt1" />
 			</p>
 		`,
 		data: [
@@ -1713,7 +1709,7 @@ ve.dm.mwExample.domToDataCases = {
 					},
 					originalMw: '{"name":"score","attrs":{},"body":{"extsrc":"\\\\relative c\' { e d c d e e e }"}}'
 				},
-				originalDomElements: $.parseHTML( `<img src="${ve.ce.minImgDataUri}" width="100" height="20" alt="Bar" about="#mwt1" data-parsoid="1"></img>` )
+				originalDomElements: $.parseHTML( `<img src="${ ve.ce.minImgDataUri }" width="100" height="20" alt="Bar" about="#mwt1" data-parsoid="1"></img>` )
 			},
 			{ type: '/mwAlienInlineExtension' },
 			{ type: '/paragraph' },
@@ -1880,7 +1876,7 @@ ve.dm.mwExample.domToDataCases = {
 		body: '<p>Foo<a rel="mw:ExtLink" href="http://www.example.com"></a>Bar</p>',
 		data: [
 			{ type: 'paragraph' },
-			'F', 'o', 'o',
+			...'Foo',
 			{
 				type: 'link/mwNumberedExternal',
 				attributes: {
@@ -1888,7 +1884,7 @@ ve.dm.mwExample.domToDataCases = {
 				}
 			},
 			{ type: '/link/mwNumberedExternal' },
-			'B', 'a', 'r',
+			...'Bar',
 			{ type: '/paragraph' },
 			{ type: 'internalList' },
 			{ type: '/internalList' }
@@ -1899,7 +1895,7 @@ ve.dm.mwExample.domToDataCases = {
 		body: '<p>Foo<a rel="ve:NumberedLink" href="http://www.example.com">[1]</a>Bar</p>',
 		data: [
 			{ type: 'paragraph' },
-			'F', 'o', 'o',
+			...'Foo',
 			{
 				type: 'link/mwNumberedExternal',
 				attributes: {
@@ -1907,7 +1903,7 @@ ve.dm.mwExample.domToDataCases = {
 				}
 			},
 			{ type: '/link/mwNumberedExternal' },
-			'B', 'a', 'r',
+			...'Bar',
 			{ type: '/paragraph' },
 			{ type: 'internalList' },
 			{ type: '/internalList' }
@@ -1981,9 +1977,7 @@ ve.dm.mwExample.domToDataCases = {
 					whitespace: [ undefined, undefined, undefined, '\n' ]
 				}
 			},
-			'F',
-			'o',
-			'o',
+			...'Foo',
 			{ type: '/paragraph' },
 			{
 				type: 'mwLanguage',
@@ -2043,17 +2037,17 @@ ve.dm.mwExample.domToDataCases = {
 			<meta typeof="mw:Placeholder" data-parsoid="foobar" />
 		`,
 		previewBody: ve.dm.example.singleLine`
-			${ve.dm.example.commentNodePreview( ' No conversion ' )}
+			${ ve.dm.example.commentNodePreview( ' No conversion ' ) }
 			<meta property="mw:ThisIsAnAlien" />
 			<p>
 				Foo
 				<a href="/wiki/Category:Bar">Bar</a>
 				Bar
 				<meta property="mw:foo" content="bar" />
-				Ba${ve.dm.example.commentNodePreview( ' inline ' )}z
+				Ba${ ve.dm.example.commentNodePreview( ' inline ' ) }z
 			</p>
 			<meta property="mw:bar" content="baz" />
-			${ve.dm.example.commentNodePreview( 'barbaz' )}
+			${ ve.dm.example.commentNodePreview( 'barbaz' ) }
 			<a href="/wiki/Category:Foo_foo">Foo foo</a>
 			<meta typeof="mw:Placeholder" data-parsoid="foobar" />
 		`,
@@ -2115,9 +2109,7 @@ ve.dm.mwExample.domToDataCases = {
 				}
 			},
 			{ type: '/mwEntity' },
-			':',
-			' ',
-			'b',
+			...': b',
 			{ type: '/paragraph' },
 			{ type: 'internalList' },
 			{ type: '/internalList' }
@@ -2153,22 +2145,13 @@ ve.dm.mwExample.domToDataCases = {
 		body: '<p> a  <span typeof="mw:Entity"> </span>   b    <span typeof="mw:Entity">¥</span>\t<span typeof="mw:Entity">™</span></p>',
 		data: [
 			{ type: 'paragraph', internal: { whitespace: [ undefined, ' ' ] } },
-			'a',
-			' ',
-			' ',
+			...'a  ',
 			{
 				type: 'mwEntity',
 				attributes: { character: ' ' }
 			},
 			{ type: '/mwEntity' },
-			' ',
-			' ',
-			' ',
-			'b',
-			' ',
-			' ',
-			' ',
-			' ',
+			...'   b    ',
 			{
 				type: 'mwEntity',
 				attributes: { character: '¥' }
@@ -2186,12 +2169,13 @@ ve.dm.mwExample.domToDataCases = {
 		]
 	},
 	'category default sort key': {
-		body: '<meta property="mw:PageProp/categorydefaultsort" content="foo">',
+		body: '<span typeof="mw:Transclusion" data-mw=\'{"parts":[{"template":{"target":{"wt":"DEFAULTSORT:foo","function":"defaultsort"}}}]}\'></span>',
 		data: [
 			{
 				type: 'mwDefaultSort',
 				attributes: {
-					content: 'foo'
+					prefix: 'DEFAULTSORT',
+					sortkey: 'foo'
 				}
 			},
 			{ type: '/mwDefaultSort' },
@@ -2203,10 +2187,11 @@ ve.dm.mwExample.domToDataCases = {
 	},
 	'thumb image': {
 		body: ve.dm.mwExample.MWBlockImage.html,
-		data: ve.dm.mwExample.MWBlockImage.data.concat( [
+		data: [
+			...ve.dm.mwExample.MWBlockImage.data,
 			{ type: 'internalList' },
 			{ type: '/internalList' }
-		] ),
+		],
 		storeItems: ve.dm.mwExample.MWBlockImage.storeItems
 	},
 	'broken block image': {
@@ -2251,7 +2236,7 @@ ve.dm.mwExample.domToDataCases = {
 			},
 			{ type: 'mwImageCaption' },
 			{ type: 'paragraph', internal: { generated: 'wrapper' } },
-			'a', 'b', 'c',
+			...'abc',
 			{ type: '/paragraph' },
 			{ type: '/mwImageCaption' },
 			{ type: '/mwBlockImage' },
@@ -2325,7 +2310,7 @@ ve.dm.mwExample.domToDataCases = {
 		body: ve.dm.example.singleLine`
 			<figure typeof="mw:Image/Thumb" data-parsoid="{}">
 				<a href="./Foo" data-parsoid="{}" class="mw-file-description">
-					<img src="${ve.ce.minImgDataUri}" class="mw-file-element" width="1" height="2" resource="./FooBar" data-parsoid="{}">
+					<img src="${ ve.ce.minImgDataUri }" class="mw-file-element" width="1" height="2" resource="./FooBar" data-parsoid="{}">
 				</a>
 				<figcaption data-parsoid="{}">
 				 foo <a rel="mw:WikiLink" href="./Bar" data-parsoid="{}">bar</a> baz
@@ -2335,7 +2320,7 @@ ve.dm.mwExample.domToDataCases = {
 		fromDataBody: ve.dm.example.singleLine`
 			<figure typeof="mw:Image/Thumb">
 				<a href="./Foo" class="mw-file-description">
-					<img src="${ve.ce.minImgDataUri}" class="mw-file-element" width="1" height="2" resource="./FooBar">
+					<img src="${ ve.ce.minImgDataUri }" class="mw-file-element" width="1" height="2" resource="./FooBar">
 				</a>
 				<figcaption>
 				 foo <a rel="mw:WikiLink" href="./Bar">bar</a> baz
@@ -2366,7 +2351,7 @@ ve.dm.mwExample.domToDataCases = {
 			},
 			{ type: 'mwImageCaption', internal: { whitespace: [ undefined, ' ' ] } },
 			{ type: 'paragraph', internal: { generated: 'wrapper', whitespace: [ ' ' ] } },
-			'f', 'o', 'o', ' ',
+			...'foo ',
 			[
 				'b',
 				[ {
@@ -2400,7 +2385,7 @@ ve.dm.mwExample.domToDataCases = {
 					}
 				} ]
 			],
-			' ', 'b', 'a', 'z',
+			...' baz',
 			{ type: '/paragraph' },
 			{ type: '/mwImageCaption' },
 			{ type: '/mwBlockImage' },

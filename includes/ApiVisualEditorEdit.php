@@ -10,29 +10,31 @@
 
 namespace MediaWiki\Extension\VisualEditor;
 
-use ApiBase;
-use ApiMain;
-use BagOStuff;
-use ContentHandler;
 use Deflate;
-use DerivativeContext;
 use DifferenceEngine;
-use ExtensionRegistry;
 use FlaggablePageView;
-use IBufferingStatsdDataFactory;
-use IDBAccessObject;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Content\ContentHandler;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use ObjectCache;
-use RequestContext;
-use Sanitizer;
 use SkinFactory;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 class ApiVisualEditorEdit extends ApiBase {
 	use ApiParsoidTrait;
@@ -50,7 +52,7 @@ class ApiVisualEditorEdit extends ApiBase {
 	public function __construct(
 		ApiMain $main,
 		string $name,
-		VisualEditorHookRunner $hookRunner,
+		HookContainer $hookContainer,
 		IBufferingStatsdDataFactory $statsdDataFactory,
 		PageEditStash $pageEditStash,
 		SkinFactory $skinFactory,
@@ -61,7 +63,7 @@ class ApiVisualEditorEdit extends ApiBase {
 		parent::__construct( $main, $name );
 		$this->setLogger( LoggerFactory::getInstance( 'VisualEditor' ) );
 		$this->setStats( $statsdDataFactory );
-		$this->hookRunner = $hookRunner;
+		$this->hookRunner = new VisualEditorHookRunner( $hookContainer );
 		$this->pageEditStash = $pageEditStash;
 		$this->skinFactory = $skinFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
@@ -151,6 +153,7 @@ class ApiVisualEditorEdit extends ApiBase {
 			'action' => 'parse',
 			'oldid' => $newRevId,
 			'prop' => 'text|revid|categorieshtml|sections|displaytitle|subtitle|modules|jsconfigvars',
+			'usearticle' => true,
 			'useskin' => $params['useskin'],
 		];
 		// Boolean parameters must be omitted completely to be treated as false.
@@ -263,7 +266,7 @@ class ApiVisualEditorEdit extends ApiBase {
 			return false;
 		}
 
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getLocalClusterInstance();
 
 		// Store the corresponding wikitext, referenceable by a new key
 		$hash = md5( $wikitext );
@@ -290,12 +293,7 @@ class ApiVisualEditorEdit extends ApiBase {
 		return $hash;
 	}
 
-	/**
-	 * @param BagOStuff $cache
-	 * @param UserIdentity $user
-	 * @param string $newKey
-	 */
-	private function pruneExcessStashedEntries( BagOStuff $cache, UserIdentity $user, $newKey ) {
+	private function pruneExcessStashedEntries( BagOStuff $cache, UserIdentity $user, string $newKey ): void {
 		$key = $cache->makeKey( 'visualeditor-serialization-recent', $user->getName() );
 
 		$keyList = $cache->get( $key ) ?: [];
@@ -312,10 +310,10 @@ class ApiVisualEditorEdit extends ApiBase {
 	 * Load some parsed wikitext of an edit from the serialisation cache.
 	 *
 	 * @param string $hash The key of the wikitext in the serialisation cache
-	 * @return string|null The wikitext
+	 * @return string|false The wikitext
 	 */
 	protected function trySerializationCache( $hash ) {
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getLocalClusterInstance();
 		$key = $cache->makeKey( 'visualeditor', 'serialization', $hash );
 		$value = $cache->get( $key );
 
@@ -338,10 +336,13 @@ class ApiVisualEditorEdit extends ApiBase {
 		$apiParams = [
 			'action' => 'compare',
 			'prop' => 'diff',
+			// Because we're just providing wikitext, we only care about the main slot
+			'slots' => SlotRecord::MAIN,
 			'fromtitle' => $title->getPrefixedDBkey(),
 			'fromrev' => $fromId,
 			'fromsection' => $section,
-			'totext' => $wikitext,
+			'toslots' => SlotRecord::MAIN,
+			'totext-main' => $wikitext,
 			'topst' => true,
 		];
 
@@ -358,15 +359,12 @@ class ApiVisualEditorEdit extends ApiBase {
 			/* enable write? */ false
 		);
 		$api->execute();
-		$result = $api->getResult()->getResultData( null, [
-			/* Transform content nodes to '*' */ 'BC' => [],
-			/* Add back-compat subelements */ 'Types' => [],
-		] );
+		$result = $api->getResult()->getResultData();
 
-		if ( !isset( $result['compare']['*'] ) ) {
+		if ( !isset( $result['compare']['bodies'][SlotRecord::MAIN] ) ) {
 			$this->dieWithError( 'apierror-visualeditor-difffailed', 'difffailed' );
 		}
-		$diffRows = $result['compare']['*'];
+		$diffRows = $result['compare']['bodies'][SlotRecord::MAIN];
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $title );

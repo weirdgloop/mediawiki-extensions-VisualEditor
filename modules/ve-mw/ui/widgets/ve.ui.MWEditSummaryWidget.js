@@ -1,7 +1,7 @@
 /*!
  * VisualEditor UserInterface MWEditSummaryWidget class.
  *
- * @copyright 2011-2018 VisualEditor Team and others; see http://ve.mit-license.org
+ * @copyright See AUTHORS.txt
  */
 
 /**
@@ -10,11 +10,11 @@
  *
  * @class
  * @extends OO.ui.MultilineTextInputWidget
- * @mixins OO.ui.mixin.LookupElement
+ * @mixes OO.ui.mixin.LookupElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {number} [limit=6] Number of suggestions to show
+ * @param {number} [config.limit=6] Number of suggestions to show
  */
 ve.ui.MWEditSummaryWidget = function VeUiMWEditSummaryWidget( config ) {
 	config = config || {};
@@ -23,10 +23,7 @@ ve.ui.MWEditSummaryWidget = function VeUiMWEditSummaryWidget( config ) {
 	ve.ui.MWEditSummaryWidget.super.call( this, ve.extendObject( {
 		autosize: true,
 		maxRows: 15,
-		inputFilter: function ( value ) {
-			// Prevent the user from inputting newlines (this kicks in on paste, etc.)
-			return value.replace( /\r?\n/g, ' ' );
-		}
+		allowLinebreaks: false
 	}, config ) );
 
 	// Mixin method
@@ -59,7 +56,7 @@ ve.ui.MWEditSummaryWidget.static.summarySplitter = /^(\/\*.*?\*\/\s*)?([^]*)$/;
  * @return {Object} Object with section and comment string properties
  */
 ve.ui.MWEditSummaryWidget.static.splitSummary = function ( summary ) {
-	var result = summary.match( this.summarySplitter );
+	const result = summary.match( this.summarySplitter );
 	return {
 		section: result[ 1 ] || '',
 		comment: result[ 2 ]
@@ -74,7 +71,7 @@ ve.ui.MWEditSummaryWidget.static.splitSummary = function ( summary ) {
  * @return {string[]} Filtered edit summaries
  */
 ve.ui.MWEditSummaryWidget.static.getMatchingSummaries = function ( summaries, query ) {
-	var summaryPrefixMatches = [], wordPrefixMatches = [], otherMatches = [],
+	const summaryPrefixMatches = [], wordPrefixMatches = [], otherMatches = [],
 		lowerQuery = query.toLowerCase();
 
 	if ( !query.trim() ) {
@@ -82,8 +79,8 @@ ve.ui.MWEditSummaryWidget.static.getMatchingSummaries = function ( summaries, qu
 		return [];
 	}
 
-	summaries.forEach( function ( summary ) {
-		var lowerSummary = summary.toLowerCase(),
+	summaries.forEach( ( summary ) => {
+		const lowerSummary = summary.toLowerCase(),
 			index = lowerSummary.indexOf( lowerQuery );
 		if ( index === 0 ) {
 			// Exclude exact matches
@@ -113,9 +110,9 @@ ve.ui.MWEditSummaryWidget.prototype.adjustSize = function () {
 	// to appear, changing the available width, so if scrollbars are intially
 	// hidden, force them to stay hidden during the adjustment.
 	// TODO: Consider upstreaming this?
-	var scrollContainer = this.getClosestScrollableElementContainer();
-	var hasScrollbar = scrollContainer.offsetWidth > scrollContainer.scrollWidth;
-	var overflowY;
+	const scrollContainer = this.getClosestScrollableElementContainer();
+	const hasScrollbar = scrollContainer.offsetWidth > scrollContainer.scrollWidth;
+	let overflowY;
 	if ( !hasScrollbar ) {
 		overflowY = scrollContainer.style.overflowY;
 		scrollContainer.style.overflowY = 'hidden';
@@ -132,25 +129,12 @@ ve.ui.MWEditSummaryWidget.prototype.adjustSize = function () {
 };
 
 /**
- * @inheritdoc
- */
-ve.ui.MWEditSummaryWidget.prototype.onKeyPress = function ( e ) {
-	if ( e.which === OO.ui.Keys.ENTER ) {
-		e.preventDefault();
-	}
-	// Grand-parent method
-	// Multi-line only fires 'enter' on ctrl+enter, but this should
-	// fire on plain enter as it behaves like a single line input.
-	OO.ui.TextInputWidget.prototype.onKeyPress.call( this, e );
-};
-
-/**
  * Get recent edit summaries for the logged in user
  *
  * @return {jQuery.Promise} Promise which resolves with a list of summaries
  */
 ve.ui.MWEditSummaryWidget.prototype.getSummaries = function () {
-	var splitSummary = this.constructor.static.splitSummary.bind( this.constructor.static );
+	const splitSummary = this.constructor.static.splitSummary.bind( this.constructor.static );
 	if ( !this.getSummariesPromise ) {
 		if ( mw.user.isAnon() ) {
 			this.getSummariesPromise = ve.createDeferred().resolve( [] ).promise();
@@ -163,21 +147,17 @@ ve.ui.MWEditSummaryWidget.prototype.getSummaries = function () {
 				ucuser: mw.user.getName(),
 				ucprop: 'comment',
 				uclimit: 500
-			} ).then( function ( response ) {
-				var usedComments = {},
+			} ).then( ( response ) => {
+				const usedComments = {},
 					changes = ve.getProp( response, 'query', 'usercontribs' ) || [];
 
 				return changes
 					// Filter out changes without comment (e.g. due to RevisionDelete)
-					.filter( function ( change ) {
-						return Object.prototype.hasOwnProperty.call( change, 'comment' );
-					} )
+					.filter( ( change ) => Object.prototype.hasOwnProperty.call( change, 'comment' ) )
 					// Remove section /* headings */
-					.map( function ( change ) {
-						return splitSummary( change.comment ).comment.trim();
-					} )
+					.map( ( change ) => splitSummary( change.comment ).comment.trim() )
 					// Filter out duplicates and empty comments
-					.filter( function ( comment ) {
+					.filter( ( comment ) => {
 						if ( !comment || Object.prototype.hasOwnProperty.call( usedComments, comment ) ) {
 							return false;
 						}
@@ -195,18 +175,17 @@ ve.ui.MWEditSummaryWidget.prototype.getSummaries = function () {
  * @inheritdoc
  */
 ve.ui.MWEditSummaryWidget.prototype.getLookupRequest = function () {
-	var query = this.constructor.static.splitSummary( this.value ),
-		limit = this.limit,
-		widget = this;
+	const query = this.constructor.static.splitSummary( this.value ),
+		limit = this.limit;
 
-	return this.getSummaries().then( function ( allSummaries ) {
-		var matchingSummaries = widget.constructor.static.getMatchingSummaries( allSummaries, query.comment );
+	return this.getSummaries().then( ( allSummaries ) => {
+		const matchingSummaries = this.constructor.static.getMatchingSummaries( allSummaries, query.comment );
 		if ( matchingSummaries.length > limit ) {
 			// Quick in-place truncate
 			matchingSummaries.length = limit;
 		}
 		return { summaries: matchingSummaries, section: query.section };
-	} ).promise( { abort: function () {} } ); // don't abort, the actual request will be the same anyway
+	} ).promise( { abort: () => {} } ); // don't abort, the actual request will be the same anyway
 };
 
 /**
@@ -220,10 +199,8 @@ ve.ui.MWEditSummaryWidget.prototype.getLookupCacheDataFromResponse = function ( 
  * @inheritdoc
  */
 ve.ui.MWEditSummaryWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
-	return data.summaries.map( function ( item ) {
-		return new OO.ui.MenuOptionWidget( {
-			label: item,
-			data: data.section + item
-		} );
-	} );
+	return data.summaries.map( ( item ) => new OO.ui.MenuOptionWidget( {
+		label: item,
+		data: data.section + item
+	} ) );
 };

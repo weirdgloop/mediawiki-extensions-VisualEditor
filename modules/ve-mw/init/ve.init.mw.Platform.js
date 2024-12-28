@@ -1,7 +1,7 @@
 /*!
  * VisualEditor MediaWiki Initialization Platform class.
  *
- * @copyright 2011-2020 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright See AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -79,8 +79,16 @@ ve.init.mw.Platform.prototype.getMessage = mw.msg.bind( mw );
  * @method
  * @inheritdoc
  */
+ve.init.mw.Platform.prototype.getUserName = function () {
+	return mw.user.getName();
+};
+
+/**
+ * @method
+ * @inheritdoc
+ */
 ve.init.mw.Platform.prototype.parseNumber = function ( value ) {
-	var number = $.tablesorter.getParser( 'number' ).format( value );
+	const number = $.tablesorter.getParser( 'number' ).format( value );
 	// formatDigit returns -Infinity when parsing fails, change this to NaN
 	return number !== -Infinity ? number : NaN;
 };
@@ -113,9 +121,9 @@ ve.init.mw.Platform.prototype.getConfig = mw.config.get.bind( mw.config );
  */
 ve.init.mw.Platform.prototype.getUserConfig = function ( keys ) {
 	if ( Array.isArray( keys ) ) {
-		var values = mw.user.options.get( keys );
-		var parsedValues = {};
-		Object.keys( values ).forEach( function ( value ) {
+		const values = mw.user.options.get( keys );
+		const parsedValues = {};
+		Object.keys( values ).forEach( ( value ) => {
 			try {
 				parsedValues[ value ] = JSON.parse( values[ value ] );
 			} catch ( e ) {
@@ -152,8 +160,8 @@ ve.init.mw.Platform.prototype.setUserConfig = function ( keyOrValueMap, value ) 
 			return false;
 		}
 		// JSON encode all the values for API storage
-		var jsonValues = {};
-		Object.keys( keyOrValueMap ).forEach( function ( key ) {
+		const jsonValues = {};
+		Object.keys( keyOrValueMap ).forEach( ( key ) => {
 			jsonValues[ key ] = JSON.stringify( keyOrValueMap[ key ] );
 		} );
 		ve.init.target.getLocalApi().saveOptions( jsonValues );
@@ -163,7 +171,7 @@ ve.init.mw.Platform.prototype.setUserConfig = function ( keyOrValueMap, value ) 
 			return false;
 		}
 		// JSON encode the value for API storage
-		var jsonValue = JSON.stringify( value );
+		const jsonValue = JSON.stringify( value );
 		ve.init.target.getLocalApi().saveOption( keyOrValueMap, jsonValue );
 		return mw.user.options.set( keyOrValueMap, jsonValue );
 	}
@@ -181,7 +189,7 @@ ve.init.mw.Platform.prototype.createSessionStorage = function () {
  * @inheritdoc
  */
 ve.init.mw.Platform.prototype.addParsedMessages = function ( messages ) {
-	for ( var key in messages ) {
+	for ( const key in messages ) {
 		this.parsedMessages[ key ] = messages[ key ];
 	}
 };
@@ -213,7 +221,7 @@ ve.init.mw.Platform.prototype.getLanguageCodes = function () {
  * @inheritdoc
  */
 ve.init.mw.Platform.prototype.getLanguageName = function ( code ) {
-	var languageNames = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'languageNames' ) ||
+	const languageNames = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'languageNames' ) ||
 		$.uls.data.getAutonyms();
 	return languageNames[ code ] || code;
 };
@@ -240,8 +248,8 @@ ve.init.mw.Platform.prototype.getUserLanguages = mw.language.getFallbackLanguage
  * @inheritdoc
  */
 ve.init.mw.Platform.prototype.fetchSpecialCharList = function () {
-	return mw.loader.using( 'mediawiki.language.specialCharacters' ).then( function () {
-		var specialCharacterGroups = require( 'mediawiki.language.specialCharacters' ),
+	return mw.loader.using( 'mediawiki.language.specialCharacters' ).then( () => {
+		const specialCharacterGroups = require( 'mediawiki.language.specialCharacters' ),
 			characters = {},
 			otherGroupName = mw.msg( 'visualeditor-special-characters-group-other' ),
 			otherMsg = mw.message( 'visualeditor-quick-access-characters.json' ).plain(),
@@ -249,11 +257,11 @@ ve.init.mw.Platform.prototype.fetchSpecialCharList = function () {
 			rtlGroups = [ 'arabic', 'arabicextended', 'hebrew' ];
 
 		try {
-			var other = JSON.parse( otherMsg );
+			const other = JSON.parse( otherMsg );
 			if ( other ) {
 				characters.other = {
 					label: otherGroupName,
-					characters: other,
+					symbols: this.processSpecialCharSymbols( other ),
 					attributes: { dir: mw.config.get( 'wgVisualEditorConfig' ).pageLanguageDir }
 				};
 			}
@@ -263,11 +271,11 @@ ve.init.mw.Platform.prototype.fetchSpecialCharList = function () {
 		}
 
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( specialCharacterGroups, function ( groupName, groupCharacters ) {
-			var groupObject = {}; // button label => character data to insert
+		$.each( specialCharacterGroups, ( groupName, groupCharacters ) => {
+			const groupObject = {}; // button label => character data to insert
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( groupCharacters, function ( charKey, charVal ) {
-				var key, val;
+			$.each( groupCharacters, ( charKey, charVal ) => {
+				let key, val;
 				// VE has a different format and it would be a pain to change it now
 				if ( typeof charVal === 'string' ) {
 					key = charVal;
@@ -305,7 +313,7 @@ ve.init.mw.Platform.prototype.fetchSpecialCharList = function () {
 			// * special-characters-group-thai
 			characters[ groupName ] = {
 				label: mw.msg( 'special-characters-group-' + groupName ),
-				characters: groupObject,
+				symbols: this.processSpecialCharSymbols( groupObject ),
 				attributes: { dir: rtlGroups.indexOf( groupName ) !== -1 ? 'rtl' : 'ltr' }
 			};
 		} );
@@ -318,7 +326,7 @@ ve.init.mw.Platform.prototype.fetchSpecialCharList = function () {
  * @inheritdoc
  */
 ve.init.mw.Platform.prototype.decodeEntities = function ( html ) {
-	var character = ve.safeDecodeEntities( html );
+	const character = ve.safeDecodeEntities( html );
 	return [
 		{
 			type: 'mwEntity',

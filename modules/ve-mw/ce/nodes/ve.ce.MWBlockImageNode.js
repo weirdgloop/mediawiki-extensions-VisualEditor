@@ -1,7 +1,7 @@
 /*!
  * VisualEditor ContentEditable MWBlockImageNode class.
  *
- * @copyright 2011-2020 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright See AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -10,7 +10,7 @@
  *
  * @class
  * @extends ve.ce.BranchNode
- * @mixins ve.ce.MWImageNode
+ * @mixes ve.ce.MWImageNode
  *
  * @constructor
  * @param {ve.dm.MWBlockImageNode} model Model to observe
@@ -20,8 +20,8 @@ ve.ce.MWBlockImageNode = function VeCeMWBlockImageNode() {
 	// Parent constructor
 	ve.ce.MWBlockImageNode.super.apply( this, arguments );
 
-	var type = this.model.getAttribute( 'type' );
-	var isError = this.model.getAttribute( 'isError' );
+	const type = this.model.getAttribute( 'type' );
+	const isError = this.model.getAttribute( 'isError' );
 
 	// DOM Hierarchy for MWBlockImageNode:
 	//   <figure> this.$element (ve-ce-mwBlockImageNode-{type})
@@ -29,11 +29,11 @@ ve.ce.MWBlockImageNode = function VeCeMWBlockImageNode() {
 	//       <img> this.$image
 	//     <figcaption> ve.ce.MWImageCaptionNode
 
-	var $image, $focusable;
+	let $image, $focusable;
 	// Build DOM:
 	if ( isError ) {
 		$image = $( [] );
-		var $missingImage = $( '<span>' )
+		const $missingImage = $( '<span>' )
 			.addClass( 'mw-file-element mw-broken-media' )
 			.text( this.model.getAttribute( 'errorText' ) );
 		this.$a = $( '<a>' )
@@ -115,7 +115,7 @@ ve.ce.MWBlockImageNode.static.cssClasses = {
  * @param {string} [oldAlign] The old alignment, for removing classes
  */
 ve.ce.MWBlockImageNode.prototype.updateClasses = function ( oldAlign ) {
-	var align = this.model.getAttribute( 'align' );
+	const align = this.model.getAttribute( 'align' );
 
 	if ( oldAlign && oldAlign !== align ) {
 		// Remove previous alignment
@@ -126,9 +126,9 @@ ve.ce.MWBlockImageNode.prototype.updateClasses = function ( oldAlign ) {
 			.removeClass( this.getCssClass( 'default', oldAlign ) );
 	}
 
-	var type = this.model.getAttribute( 'type' );
-	var framed = type !== 'none' && type !== 'frameless';
-	var alignClass = this.getCssClass( framed ? 'default' : 'none', align );
+	const type = this.model.getAttribute( 'type' );
+	const framed = type !== 'none' && type !== 'frameless';
+	const alignClass = this.getCssClass( framed ? 'default' : 'none', align );
 	this.$image.toggleClass( 've-ce-mwBlockImageNode-thumbimage', framed );
 	// eslint-disable-next-line mediawiki/class-doc
 	this.$element.addClass( alignClass );
@@ -152,7 +152,7 @@ ve.ce.MWBlockImageNode.prototype.updateClasses = function ( oldAlign ) {
  * @param {Object} [dimensions] Dimension object containing width & height
  */
 ve.ce.MWBlockImageNode.prototype.updateSize = function ( dimensions ) {
-	var isError = this.model.getAttribute( 'isError' );
+	const isError = this.model.getAttribute( 'isError' );
 
 	if ( isError ) {
 		this.$element.css( { width: '', height: '' } );
@@ -168,9 +168,9 @@ ve.ce.MWBlockImageNode.prototype.updateSize = function ( dimensions ) {
 
 	this.$image.css( dimensions );
 
-	var type = this.model.getAttribute( 'type' );
-	var borderImage = this.model.getAttribute( 'borderImage' );
-	var hasBorderOrFrame = ( type !== 'none' && type !== 'frameless' ) || borderImage;
+	const type = this.model.getAttribute( 'type' );
+	const borderImage = this.model.getAttribute( 'borderImage' );
+	const hasBorderOrFrame = ( type !== 'none' && type !== 'frameless' ) || borderImage;
 
 	// Make sure $element is sharing the dimensions, otherwise 'middle' and 'none'
 	// positions don't work properly
@@ -293,7 +293,7 @@ ve.ce.MWBlockImageNode.prototype.getDomPosition = function () {
 	// CE nodes (specifically, the image itself, this.$a), which throws the calculations out of whack.
 	// Luckily, MWBlockImageNode is very simple and can contain at most one other node: its caption,
 	// which is always inserted at the end.
-	var domNode = this.$element.last()[ 0 ];
+	const domNode = this.$element.last()[ 0 ];
 	return {
 		node: domNode,
 		offset: domNode.childNodes.length
