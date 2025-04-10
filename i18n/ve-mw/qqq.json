@@ -35,7 +35,9 @@
 			"Woytecr",
 			"Yejianfei",
 			"Zoranzoki21",
-			"Ата"
+			"Ата",
+			"Jack who built the house",
+			"Stjn"
 		]
 	},
 	"accesskey-ca-ve-edit": "{{doc-accesskey}}",
@@ -48,7 +50,7 @@
 	"accesskey-ca-createsource-local": "{{doc-accesskey}}",
 	"collabpad-doctitle": "Name of CollabPad special page with a document subtitle",
 	"collabpad-import-subtitle": "Subtitle of CollabPad page, linking to the page the content was imported from",
-	"collabpad": "Name of CollabPad special page",
+	"collabpad": "{{doc-special|CollabPad}}",
 	"tooltip-ca-ve-edit": "Tooltip of the dedicated VisualEditor \"Edit\" tab.\n{{Identical|Edit this page}}",
 	"tooltip-ca-ve-edit-local": "Tooltip of the dedicated VisualEditor \"Edit local description\" tab.",
 	"tooltip-ca-ve-create": "Tooltip of the dedicated VisualEditor \"Create\" tab.",
@@ -104,7 +106,7 @@
 	"visualeditor-dialog-media-info-meta-artist": "Label for the author information for the image in the media dialog.\n\nParameters:\n* $1 - Author name.",
 	"visualeditor-dialog-media-info-moreinfo": "Label for the link to more information in the image data panel.\n{{Identical|More information}}",
 	"visualeditor-dialog-media-info-readmore": "Label for the link to expand the text in the image data panel.\n{{Identical|Read more}}",
-	"visualeditor-dialog-media-info-separator": "Character separating information in the image info panel in the media dialog.\n{{Optional}}",
+	"visualeditor-dialog-media-info-separator": "{{Optional}}\nCharacter separating information in the image info panel in the media dialog.",
 	"visualeditor-dialog-media-info-uploaded": "Label for the image upload date in the media dialog.\n\nParameters:\n* $1 - Date of last upload.\n{{Identical|Uploaded}}",
 	"visualeditor-dialog-media-page-advanced": "Label for the advanced settings page in the media edit dialog.\n{{Identical|Advanced settings}}",
 	"visualeditor-dialog-media-page-general": "Label for the general settings page in the media edit dialog.\n{{Identical|General settings}}",
@@ -282,7 +284,7 @@
 	"visualeditor-includes-onlyinclude-start": "Label of the context item for an opening <code>&lt;onlyinclude></code> tag.",
 	"visualeditor-includes-onlyinclude-end": "Label of the context item for a closing <code><nowiki>&lt;/onlyinclude></nowiki></code> tag.",
 	"visualeditor-includes-includeonly": "Label of the context item for a pair of <code>&lt;includeonly>&lt;/includeonly></code> tags.",
-	"visualeditor-includes-noinclude-description": "Additional explanation for an opening <code>;lt&noinclude></code> tag.",
+	"visualeditor-includes-noinclude-description": "Additional explanation for an opening <code>&lt;noinclude></code> tag.",
 	"visualeditor-includes-onlyinclude-description": "Additional explanation for an opening <code>&lt;onlyinclude></code> tag.",
 	"visualeditor-includes-includeonly-description": "Additional explanation for a pair of <code>&lt;includeonly>&lt;/includeonly></code> tags. This is followed by the content of the tags.",
 	"visualeditor-includes-documentation": "Link to documentation displayed below each of these messages:\n* {{msg-mw|visualeditor-includes-noinclude-description}}\n* {{msg-mw|visualeditor-includes-onlyinclude-description}}\n* {{msg-mw|visualeditor-includes-includeonly-description}}",

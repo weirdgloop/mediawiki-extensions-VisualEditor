@@ -43,7 +43,8 @@
 			"捍粵者",
 			"烈羽",
 			"Cookai1205",
-			"H78c67c"
+			"H78c67c",
+			"Lakejason0"
 		]
 	},
 	"collabpad-doctitle": "CollabPad：$1",
@@ -179,8 +180,8 @@
 	"visualeditor-dialog-meta-settings-toc-default": "如果需要",
 	"visualeditor-dialog-meta-settings-toc-disable": "從不",
 	"visualeditor-dialog-meta-settings-toc-force": "總是",
-	"visualeditor-dialog-meta-settings-toc-help": "當少於四個標題時，您仍可強制在頁首顯示目錄，或者強制不要顯示目錄。在預設的情況下頁面若超過四個標題會顯示目錄。",
-	"visualeditor-dialog-meta-settings-toc-label": "顯示目錄",
+	"visualeditor-dialog-meta-settings-toc-help": "當少於四個標題時，您仍可強制在頁首顯示目次，或者強制不要顯示目次。在預設的情況下頁面若超過四個標題會顯示目次。",
+	"visualeditor-dialog-meta-settings-toc-label": "顯示目次",
 	"visualeditor-dialog-meta-templatesused-noresults": "找不到模板。",
 	"visualeditor-dialog-meta-title": "選項",
 	"visualeditor-dialog-table-collapsed": "初始時先摺疊",
@@ -261,7 +262,7 @@
 	"visualeditor-editingtabdialog-ok": "使用我上次編輯使用的編輯器",
 	"visualeditor-editingtabdialog-title": "編輯頁籤",
 	"visualeditor-editnotices-tool": "$1 則通知",
-	"visualeditor-editnotices-tooltip": "編輯說明",
+	"visualeditor-editnotices-tooltip": "編輯提示",
 	"visualeditor-editsummary": "描述您所變更的內容",
 	"visualeditor-editsummary-characters-remaining": "剩餘位元組數",
 	"visualeditor-educationpopup-dismiss": "收到",
