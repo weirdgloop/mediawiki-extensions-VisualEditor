@@ -45,7 +45,8 @@
 			"Sjoerddebruin",
 			"Southparkfan",
 			"TheDJ",
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"Jeroen N"
 		]
 	},
 	"collabpad-doctitle": "CollabPad: $1",
@@ -102,7 +103,6 @@
 	"visualeditor-dialog-media-info-artist": "Geüpload door $1",
 	"visualeditor-dialog-media-info-audiofile": "Geluidsbestand",
 	"visualeditor-dialog-media-info-created": "Aangemaakt: $1",
-	"visualeditor-dialog-media-info-ellipsis": "…",
 	"visualeditor-dialog-media-info-meta-artist": "Auteur: $1",
 	"visualeditor-dialog-media-info-moreinfo": "Meer informatie",
 	"visualeditor-dialog-media-info-readmore": "Meer lezen",
@@ -288,7 +288,7 @@
 	"visualeditor-includes-includeonly-description": "Wanneer inhoud van deze pagina door een andere pagina wordt gebruikt, wordt hier de volgende aanvullende inhoud opgenomen:",
 	"visualeditor-includes-documentation": "[//www.mediawiki.org/wiki/Special:MyLanguage/Transclusion#Partial_transclusion Meer informatie over gedeeltelijke transclusie]",
 	"visualeditor-languages-tool": "Talen",
-	"visualeditor-linkinspector-button-link-external": "Uitwendige pagina",
+	"visualeditor-linkinspector-button-link-external": "Externe koppeling",
 	"visualeditor-linkinspector-button-link-internal": "Interne pagina's doorzoeken",
 	"visualeditor-linkinspector-convert-link-isbn": "Omzetten naar ISBN-koppeling",
 	"visualeditor-linkinspector-convert-link-pmid": "Omzetten naar PMID-koppeling",
