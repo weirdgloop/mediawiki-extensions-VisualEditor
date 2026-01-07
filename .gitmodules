@@ -1,3 +1,5 @@
 [submodule "lib/ve"]
 	path = lib/ve
 	url = https://github.com/wikimedia/visualeditor.git
+	branch = REL1_45
+	ignore = dirty
