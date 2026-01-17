@@ -241,6 +241,7 @@ class Hooks implements
 		$output = $context->getOutput();
 
 		// WGL - Revert 51759c3f7eef4f0e509c7e47e967eb3128db1e82 as we want $wgVisualEditorEnableDiffPage to be configurable.
+		$veConfig = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'visualeditor' );
 		if ( !(
 			// Enabled globally on wiki
 			$veConfig->get( 'VisualEditorEnableDiffPage' ) ||
