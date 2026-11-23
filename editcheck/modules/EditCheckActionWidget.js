@@ -8,6 +8,7 @@
  * @param {string} config.type Type of message (e.g., 'warning', 'error')
  * @param {string} config.name Unique name of the action
  * @param {string} [config.checkName] Registered name of the check that made the action
+ * @param {string} [config.configAnchor] Anchor of the action's row on Special:EditChecks
  * @param {boolean} [config.isSystemCheck] The check that made the action is a system check
  * @param {string|jQuery|Function|OO.ui.HtmlSnippet} config.label Title
  * @param {string|jQuery|Function|OO.ui.HtmlSnippet} config.message Body message
@@ -29,6 +30,7 @@ mw.editcheck.EditCheckActionWidget = function MWEditCheckActionWidget( config ) 
 	this.name = config.name;
 	// this.name can hold a community rule ID. Metrics need the bounded name.
 	this.checkName = config.checkName || config.name;
+	this.configAnchor = config.configAnchor || this.checkName;
 	this.isSystemCheck = !!config.isSystemCheck;
 
 	this.actions = new OO.ui.ActionSet();
@@ -132,13 +134,18 @@ mw.editcheck.EditCheckActionWidget = function MWEditCheckActionWidget( config ) 
 						label: ve.msg( 'editcheck-suggestionfeedback-label-about' )
 					} ),
 					new OO.ui.MenuOptionWidget( {
-						data: 'feedback',
-						label: ve.msg( 'editcheck-suggestionfeedback-label-report' )
+						// mw.Title escapes the fragment
+						data: 'Special:EditChecks#' + this.configAnchor,
+						label: ve.msg( 'editcheck-suggestionfeedback-label-configuration' )
 					} ),
 					...( config.experimental ? [ new OO.ui.MenuOptionWidget( {
 						data: 'Special:EditChecks#experimental-checks',
 						label: ve.msg( 'editcheck-suggestionfeedback-label-experimental' )
-					} ) ] : [] )
+					} ) ] : [] ),
+					new OO.ui.MenuOptionWidget( {
+						data: 'feedback',
+						label: ve.msg( 'editcheck-suggestionfeedback-label-report' )
+					} )
 				]
 			}
 		} );
@@ -183,6 +190,21 @@ mw.editcheck.EditCheckActionWidget.static.iconMap.progressive = 'lightbulb';
  */
 
 /* Methods */
+
+/**
+ * Remove the elements that this widget added outside of its own element
+ *
+ * Call this when the widget is removed from the page.
+ */
+mw.editcheck.EditCheckActionWidget.prototype.destroy = function () {
+	if ( this.suggestionFeedbackMenuSelect ) {
+		const menu = this.suggestionFeedbackMenuSelect.getMenu();
+		// Close the menu first, to remove its document and window handlers
+		menu.toggle( false );
+		// The menu is in the overlay, not in this.$element
+		menu.$element.remove();
+	}
+};
 
 /**
  * Set the mode

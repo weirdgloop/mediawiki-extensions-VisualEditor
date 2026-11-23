@@ -125,7 +125,7 @@ class SpecialEditChecks extends SpecialPage {
 		if ( $this->coreConfig->get( 'VisualEditorEnableEditCheckSuggestionsBeta' ) ) {
 			// Split beta and experimental checks based on if they are enabled by default
 			$this->addTocSection( 'betafeatures', 'editcheck-specialeditchecks-header-betafeatures' );
-			$out->addHTML( Html::rawElement( 'h2', [ 'id' => Sanitizer::escapeIdForLink( 'betafeatures' ) ],
+			$out->addHTML( Html::rawElement( 'h2', [ 'id' => Sanitizer::escapeIdForAttribute( 'betafeatures' ) ],
 				Html::element( 'a', [
 					'href' => $this->getTitleFor( 'Preferences' )->getLocalURL() . '#mw-prefsection-betafeatures',
 				],
@@ -178,7 +178,7 @@ class SpecialEditChecks extends SpecialPage {
 	 */
 	private function outputSection( string $id, string $label ): void {
 		$out = $this->getOutput();
-		$out->addHTML( Html::element( 'h2', [ 'id' => Sanitizer::escapeIdForLink( $id ) ], $label ) );
+		$out->addHTML( Html::element( 'h2', [ 'id' => Sanitizer::escapeIdForAttribute( $id ) ], $label ) );
 		$this->addTocSection( $id, 'rawmessage', $label );
 	}
 
@@ -271,6 +271,7 @@ class SpecialEditChecks extends SpecialPage {
 			}
 			$ruleChecks[] = [
 				'file' => '',
+				// TextMatchEditCheckAction#getConfigAnchor links to this name. Keep the format the same.
 				'name' => $checkData['name'] . " ($name)",
 				'matchRuleId' => (string)$name,
 				'parent' => $checkData,
@@ -356,11 +357,11 @@ class SpecialEditChecks extends SpecialPage {
 		$widget = $this->buildWidgetPlaceholder( $checkData, $suggestions );
 		$this->addTocSubSection( $checkData['name'], 'rawmessage', $checkData['name'] );
 
-		$html .= Html::rawElement( 'tr', [],
+		$html .= Html::rawElement( 'tr', [
+			'id' => Sanitizer::escapeIdForAttribute( $checkData['name'] )
+		],
 			Html::rawElement( 'td', [],
-				Html::element( 'strong', [
-					'id' => Sanitizer::escapeIdForLink( $checkData['name'] )
-				], $checkData['name'] ) .
+				Html::element( 'strong', [], $checkData['name'] ) .
 				Html::element( 'div', [], basename( $checkData['file'] ) )
 			) .
 			Html::rawElement( 'td', [], $widget ) .
@@ -482,16 +483,16 @@ class SpecialEditChecks extends SpecialPage {
 	}
 
 	/**
-	 * Attempt to convert a JS object literal to valid JSON for display.
-	 * Returns pretty-printed JSON string or null on failure.
+	 * Attempt to convert a JS object literal to a table for display.
+	 * If it can't be parsed, returns the escaped source in a <pre> instead.
 	 *
 	 * @param string $js JS object literal
-	 * @return string
+	 * @return string HTML
 	 */
 	private function jsonTableFromObjectString( string $js ): string {
 		$data = $this->parser->tryJsonDecodeObjectString( $js );
 
-		return $data === null ? $js : $this->jsonTable( $data );
+		return $data === null ? Html::element( 'pre', [], $js ) : $this->jsonTable( $data );
 	}
 
 	/**
