@@ -6,14 +6,15 @@
 			"Foxj",
 			"John Reid",
 			"MJL",
-			"TMg"
+			"TMg",
+			"Monospaced"
 		]
 	},
 	"tooltip-ca-ve-edit": "Chynge this page",
 	"tooltip-ca-editsource": "Eedit the soorce code o this page",
 	"tooltip-ca-createsource": "Mak the soorce code o this page",
 	"visualeditor-advancedsettings-tool": "Advanced settins",
-	"visualeditor-ca-createlocaldescriptionsource": "Eik local descreeption soorce",
+	"visualeditor-ca-createlocaldescriptionsource": "Add local description soorce",
 	"visualeditor-ca-createsource": "Mak soorce",
 	"visualeditor-ca-editlocaldescriptionsource": "Eedit the local descreeption soorce",
 	"visualeditor-ca-editsource": "Edit soorce",
@@ -115,7 +116,7 @@
 	"visualeditor-dialogbutton-template-tooltip": "Template",
 	"visualeditor-editconflict": "Yer chynges coudna be hained cause o aen eedit conflict. Woud {{GENDER:|ye}} like tae resolve the conflict manuallie?",
 	"visualeditor-editnotices-tool": "$1 {{PLURAL:$1|notice|notices}}",
-	"visualeditor-editnotices-tooltip": "Eidit notices",
+	"visualeditor-editnotices-tooltip": "Edit notices",
 	"visualeditor-editsummary": "Describe whit ye chynged",
 	"visualeditor-formatdropdown-format-mw-heading1": "Page title",
 	"visualeditor-formatdropdown-format-mw-heading2": "Heidin",
